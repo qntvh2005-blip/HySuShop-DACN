@@ -1,0 +1,272 @@
+{
+  "case_count": 5,
+  "cases": [
+    {
+      "case": 1,
+      "distinct_history_weights": 4,
+      "jaccard": {
+        "current": 1.0,
+        "moderate": 0.8181818181818182,
+        "uniform": 0.5384615384615384
+      },
+      "known_history_items": 25,
+      "lists": {
+        "current": [
+          "B07P54F2JH",
+          "B07P999H4J",
+          "B07H1DHJBV",
+          "B07P9S6R9Y",
+          "B01MR4AO9D",
+          "B0BV19D1VF",
+          "B0BPXL44PG",
+          "B089776S2Y",
+          "B07G5T65JQ",
+          "B07TLZR4YV"
+        ],
+        "moderate": [
+          "B07P54F2JH",
+          "B07P999H4J",
+          "B01MR4AO9D",
+          "B07H1DHJBV",
+          "B07P9S6R9Y",
+          "B0BPXL44PG",
+          "B0BV19D1VF",
+          "B089776S2Y",
+          "B072KNBV21",
+          "B07G5T65JQ"
+        ],
+        "uniform": [
+          "B089776S2Y",
+          "B07P54F2JH",
+          "B01MR4AO9D",
+          "B0BW8D4VC2",
+          "B07P999H4J",
+          "B07H1DHJBV",
+          "B0BV19D1VF",
+          "B07P9S6R9Y",
+          "B01FKGEMIY",
+          "B07PWDF1DM"
+        ]
+      }
+    },
+    {
+      "case": 2,
+      "distinct_history_weights": 4,
+      "jaccard": {
+        "current": 1.0,
+        "moderate": 1.0,
+        "uniform": 0.25
+      },
+      "known_history_items": 15,
+      "lists": {
+        "current": [
+          "B0BV19D1VF",
+          "B07VQ8GS26",
+          "B0BSFMJ2ZK",
+          "B07HFPJZQN",
+          "B0BX6V8SP3",
+          "B06XSD2DK7",
+          "B0B712DFSL",
+          "B0C4LV1XWT",
+          "B089776S2Y",
+          "B07RVCTC6Y"
+        ],
+        "moderate": [
+          "B0BV19D1VF",
+          "B07VQ8GS26",
+          "B07HFPJZQN",
+          "B0BSFMJ2ZK",
+          "B0BX6V8SP3",
+          "B06XSD2DK7",
+          "B0B712DFSL",
+          "B089776S2Y",
+          "B0C4LV1XWT",
+          "B07RVCTC6Y"
+        ],
+        "uniform": [
+          "B0BX6V8SP3",
+          "B08BGCBP5S",
+          "B0BSFMJ2ZK",
+          "B0BYZBRPJ2",
+          "B095RTJH1M",
+          "B08DQGH9T1",
+          "B07HFPJZQN",
+          "B07VQ8GS26",
+          "B0B77XGWJ7",
+          "B074L1MQ4F"
+        ]
+      }
+    },
+    {
+      "case": 3,
+      "distinct_history_weights": 4,
+      "jaccard": {
+        "current": 1.0,
+        "moderate": 0.8181818181818182,
+        "uniform": 0.3333333333333333
+      },
+      "known_history_items": 35,
+      "lists": {
+        "current": [
+          "B08BGCBP5S",
+          "B08DQGH9T1",
+          "B095RTJH1M",
+          "B08J3SQWHM",
+          "B07FR1LQNZ",
+          "B0C6G29XBT",
+          "B0B185SGXG",
+          "B08DGNGDFR",
+          "B0BYS7ZYJ1",
+          "B08J8DVRWP"
+        ],
+        "moderate": [
+          "B08BGCBP5S",
+          "B08DQGH9T1",
+          "B095RTJH1M",
+          "B07FR1LQNZ",
+          "B08J3SQWHM",
+          "B0C6G29XBT",
+          "B0B185SGXG",
+          "B0BYS7ZYJ1",
+          "B08J8DVRWP",
+          "B01ITNRGFG"
+        ],
+        "uniform": [
+          "B095RTJH1M",
+          "B07F27VDMX",
+          "B07K124GHB",
+          "B08BGCBP5S",
+          "B06VXYPWMC",
+          "B07HCZLML5",
+          "B06WD83Z36",
+          "B0C6G29XBT",
+          "B08DQGH9T1",
+          "B07FR1LQNZ"
+        ]
+      }
+    },
+    {
+      "case": 4,
+      "distinct_history_weights": 3,
+      "jaccard": {
+        "current": 1.0,
+        "moderate": 0.6666666666666666,
+        "uniform": 0.3333333333333333
+      },
+      "known_history_items": 12,
+      "lists": {
+        "current": [
+          "B072KNBV21",
+          "B09WVRFMCX",
+          "B07NY1TQRY",
+          "B09XBWZB8N",
+          "B07BLKHJF1",
+          "B00KB9AWEE",
+          "B0064REJ3C",
+          "B0BYJ8ZVWH",
+          "B01EFD5XUE",
+          "B08VHJH6Q2"
+        ],
+        "moderate": [
+          "B072KNBV21",
+          "B09WVRFMCX",
+          "B07NY1TQRY",
+          "B09XBWZB8N",
+          "B07BLKHJF1",
+          "B07GV78K8R",
+          "B00KB9AWEE",
+          "B01EFD5XUE",
+          "B0BYJ8ZVWH",
+          "B01N2HIR9R"
+        ],
+        "uniform": [
+          "B072KNBV21",
+          "B09WVRFMCX",
+          "B07GV78K8R",
+          "B09XBWZB8N",
+          "B0BSFMJ2ZK",
+          "B00KB9AWEE",
+          "B07QGPS354",
+          "B09KD3N8Y4",
+          "B07BLKHJF1",
+          "B01MR4AO9D"
+        ]
+      }
+    },
+    {
+      "case": 5,
+      "distinct_history_weights": 3,
+      "jaccard": {
+        "current": 1.0,
+        "moderate": 0.8181818181818182,
+        "uniform": 1.0
+      },
+      "known_history_items": 4,
+      "lists": {
+        "current": [
+          "B0711NQQ64",
+          "B075T5T8RV",
+          "B07VC786J8",
+          "B06XGWRLTD",
+          "B07W4NC78D",
+          "B077QH844C",
+          "B01BLI4FWI",
+          "B08PCJK5WK",
+          "B07W4KSZTP",
+          "B07GBN4YTD"
+        ],
+        "moderate": [
+          "B0711NQQ64",
+          "B07VC786J8",
+          "B075T5T8RV",
+          "B06XGWRLTD",
+          "B077QH844C",
+          "B07W4NC78D",
+          "B01BLI4FWI",
+          "B08PCJK5WK",
+          "B07W4KSZTP",
+          "B01ACXSKAG"
+        ],
+        "uniform": [
+          "B07VC786J8",
+          "B075T5T8RV",
+          "B077QH844C",
+          "B0711NQQ64",
+          "B07W4NC78D",
+          "B06XGWRLTD",
+          "B08PCJK5WK",
+          "B01BLI4FWI",
+          "B07W4KSZTP",
+          "B07GBN4YTD"
+        ]
+      }
+    }
+  ],
+  "configurations": {
+    "current": {
+      "add_to_cart": 4,
+      "favorite": 3,
+      "purchase": 5,
+      "view": 1
+    },
+    "moderate": {
+      "add_to_cart": 3,
+      "favorite": 2,
+      "purchase": 4,
+      "view": 1
+    },
+    "uniform": {
+      "add_to_cart": 1,
+      "favorite": 1,
+      "purchase": 1,
+      "view": 1
+    }
+  },
+  "mean_jaccard_to_current": {
+    "current": 1.0,
+    "moderate": 0.8242424242424242,
+    "uniform": 0.49102564102564106
+  },
+  "model": "amazon-medium-v1",
+  "scope": "Replay of current per-account histories and available candidates; no future outcome labels, no test-based selection, no claim of optimal weights"
+}

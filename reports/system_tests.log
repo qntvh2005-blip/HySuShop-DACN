@@ -1,0 +1,103 @@
+Creating test database for alias 'default'...
+
+Found 158 test(s).
+System check identified no issues (0 silenced).
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+Catalog imported: 12 created, 0 updated. Price/stock/activation preserved.
+Catalog imported: 0 created, 12 updated. Price/stock/activation preserved.
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Customer: 0 permissions
+Admin: 41 permissions
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+core iteration 1: {'positives': 92, 'users': 10, 'items': 11}
+Complete: {"all_ratings":101,"development_positives":10,"excluded_ambiguous_users":0,"groups":{"active":10},"items":11,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":1,"positive_sparsity":0.1636363636363637,"positives":92,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":72,"users":10}
+core iteration 1: {'positives': 84, 'users': 10, 'items': 10}
+Complete: {"all_ratings":92,"development_positives":10,"excluded_ambiguous_users":0,"groups":{"active":10},"items":10,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":1,"positive_sparsity":0.16000000000000003,"positives":84,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":64,"users":10}
+core iteration 1: {'positives': 84, 'users': 10, 'items': 10}
+Complete: {"all_ratings":92,"development_positives":10,"excluded_ambiguous_users":0,"groups":{"active":10},"items":10,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":1,"positive_sparsity":0.16000000000000003,"positives":84,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":64,"users":10}
+core iteration 1: {'positives': 2, 'users': 2, 'items': 1}
+core iteration 2: {'positives': 0, 'users': 0, 'items': 0}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.18333333333333335,"positives":98,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":78,"users":10}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 110, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.18333333333333335,"positives":98,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":78,"users":10}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 94, 'users': 11, 'items': 10}
+core iteration 1: {'positives': 48, 'users': 6, 'items': 9}
+core iteration 2: {'positives': 48, 'users': 6, 'items': 9}
+Complete: {"all_ratings":41,"development_positives":5,"excluded_ambiguous_users":1,"groups":{"active":4,"sparse":1},"items":9,"items_below_core_after_boundary_exclusion":6,"max_candidates":3,"min_candidates":1,"positive_sparsity":0.1333333333333333,"positives":39,"stage_user_pairs_below_k10":10,"test_positives":5,"train_positives":29,"users":5}
+reviews: chunk 1/3 verified length
+reviews: chunk 2/3 verified length
+reviews: chunk 3/3 verified length
+reviews: completed and SHA-256 recorded
+reviews: verified existing file
+reviews: chunk 2/3 verified length
+reviews: chunk 3/3 verified length
+reviews: chunk 1/3 verified length
+reviews: completed and SHA-256 recorded
+Creating positive-feedback indexes
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+core iteration 1: {'positives': 111, 'users': 11, 'items': 12}
+Complete: {"all_ratings":110,"development_positives":10,"excluded_ambiguous_users":1,"groups":{"active":10},"items":12,"items_below_core_after_boundary_exclusion":0,"max_candidates":3,"min_candidates":2,"positive_sparsity":0.17500000000000004,"positives":99,"stage_user_pairs_below_k10":20,"test_positives":10,"train_positives":79,"users":10}
+development content {'ngram_range': [1, 1], 'min_df': 1}: nDCG@10=0.876186
+development item_cf {'neighbors': 5}: nDCG@10=0.815465
+development hybrid {'alpha': 0.25}: nDCG@10=0.778558
+development hybrid {'alpha': 0.5}: nDCG@10=0.728558
+development hybrid {'alpha': 0.75}: nDCG@10=0.728558
+development popularity {}: nDCG@10=0.789279
+development content {}: nDCG@10=0.876186
+development item_cf {}: nDCG@10=0.815465
+development hybrid {}: nDCG@10=0.778558
+test popularity: nDCG@10=0.815465
+test content: nDCG@10=0.926186
+test item_cf: nDCG@10=0.741651
+test hybrid: nDCG@10=0.741651
+..............................................................................................................................................................
+----------------------------------------------------------------------
+Ran 158 tests in 12.091s
+
+OK
+Destroying test database for alias 'default'...
+

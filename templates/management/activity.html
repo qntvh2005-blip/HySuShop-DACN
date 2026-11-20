@@ -1,0 +1,44 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  Nhật ký thao tác · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Nhật ký thao tác</h1>
+      <p>
+        Lưu lại các thay đổi trong khu vực quản trị. Lịch sử xử lý đơn nằm trong chi tiết từng đơn hàng.
+      </p>
+    </div>
+  </div>
+  <section class="manage-panel">
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Thời điểm</th>
+            <th>Người thực hiện</th>
+            <th>Đối tượng</th>
+            <th>Nội dung</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in page_obj %}
+            <tr>
+              <td>{{ entry.action_time|date:'d/m/Y H:i' }}</td>
+              <td>{{ entry.user.username }}</td>
+              <td>{{ entry.object_repr }}</td>
+              <td>{{ entry.display_message }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4" class="empty-row">Chưa có thao tác được ghi nhận.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with show_count=True %}
+  </section>
+{% endblock %}

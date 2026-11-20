@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% load shop %}
+
+{% block content %}
+  <section class="container home-hero-wrap">
+    <div class="home-hero">
+      <div class="home-hero-copy">
+        <span class="hero-kicker"><i></i> HYSUSHOP · PHỤ KIỆN ĐIỆN THOẠI</span>
+        <h1>
+          Phụ kiện hợp gu,
+          <br>
+          <span>vừa thiết bị.</span>
+        </h1>
+        <p>
+          Tìm ốp lưng, kính bảo vệ và bộ sạc phù hợp với điện thoại bạn dùng.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-orange" href="{% url 'product_list' %}">Khám phá ngay
+            {% include 'components/icon.html' with name='arrow' %}
+          </a><a class="hero-secondary" href="#home-categories">Chọn theo nhu cầu ↘</a>
+        </div>
+        <div class="hero-footnote">
+          <span>
+            {% include 'components/icon.html' with name='check' %}
+            Dễ tìm theo thiết bị</span><span>
+            {% include 'components/icon.html' with name='check' %}
+            Gợi ý theo sở thích</span>
+          </div>
+        </div>
+        <div class="hero-showcase">
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+          <span class="hero-sticker">{% if has_personalized_recommendation %}DÀNH CHO BẠN{% else %}ĐƯỢC QUAN TÂM{% endif %}</span>
+          {% for product in hero_products %}
+            <a class="hero-product hero-product-{{ forloop.counter }}"
+               aria-label="Xem {{ product.name }}"
+               href="{% url 'product_detail' product.slug %}">
+              <div class="hero-product-image">
+                {% include 'catalog/image.html' with image=product.display_images.0 %}
+              </div>
+              <div class="hero-product-caption">
+                <span>{{ product.brand.name|default:'HySuShop' }}</span><strong>{{ product.price|money }}</strong>
+              </div>
+            </a>
+          {% empty %}
+            <div class="hero-empty-art">
+              HS<span>PHỤ KIỆN ĐIỆN THOẠI</span>
+            </div>
+          {% endfor %}
+          <span class="hero-collection-note">KHÁM PHÁ BỘ SƯU TẬP</span>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="home-benefits">
+        <div>
+          {% include 'components/icon.html' with name='phone' %}
+          <span><strong>Chọn đúng thiết bị</strong><small>Lọc theo dòng điện thoại bạn dùng</small></span>
+        </div>
+        <div>
+          {% include 'components/icon.html' with name='shield' %}
+          <span><strong>Thông tin rõ ràng</strong><small>Đối chiếu thông số trước khi mua</small></span>
+        </div>
+        <div>
+          {% include 'components/icon.html' with name='star' %}
+          <span><strong>Khám phá hợp sở thích</strong><small>Gợi ý từ những sản phẩm bạn quan tâm</small></span>
+        </div>
+      </div>
+    </div>
+    <section class="container home-section" id="home-categories">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BẮT ĐẦU TỪ ĐIỀU BẠN CẦN</p>
+          <h2>Mua theo danh mục</h2>
+        </div>
+        <a href="{% url 'product_list' %}">Tất cả danh mục
+          {% include 'components/icon.html' with name='arrow' %}
+        </a>
+      </div>
+      <div class="home-categories">
+        {% for category in categories %}
+          <a href="{% url 'product_list' %}?category={{ category.pk }}"><span class="category-icon"> {% include 'components/icon.html' with name=category.icon %} </span><strong>{{ category.name }}</strong><small>{{ category.item_count }} sản phẩm</small></a>
+        {% empty %}
+          <p class="muted">Danh mục sản phẩm đang được cập nhật.</p>
+        {% endfor %}
+      </div>
+    </section>
+    {% if home_brands %}
+      <section class="container home-brand-section" aria-label="Thương hiệu">
+        <span>THƯƠNG HIỆU QUEN THUỘC</span>
+        <div>
+          {% for value,label in home_brands %}
+            <a href="{% url 'product_list' %}?brand={{ value }}">{{ label }}</a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    <section class="container home-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DÀNH CHO NHỮNG ĐIỀU BẠN THÍCH</p>
+          <h2>
+            {% if has_personalized_recommendation %}
+              Gợi ý dành cho bạn
+            {% else %}
+              Sản phẩm được quan tâm
+            {% endif %}
+          </h2>
+          <p class="section-subtitle">
+            {% if has_personalized_recommendation %}
+              Khám phá thêm từ những sản phẩm bạn đã quan tâm và mua sắm.
+            {% else %}
+              Bắt đầu với các sản phẩm phổ biến, rồi khám phá theo sở thích của bạn.
+            {% endif %}
+          </p>
+        </div>
+        <a href="{% url 'product_list' %}">Xem tất cả
+          {% include 'components/icon.html' with name='arrow' %}
+        </a>
+      </div>
+      <div class="product-grid">
+        {% for product in recommendation.products %}
+          {% include 'catalog/card.html' %}
+        {% empty %}
+          <div class="empty-state">
+            <h3>Chưa có gợi ý phù hợp</h3>
+            <p>Khám phá danh mục để tìm thêm những sản phẩm bạn quan tâm.</p>
+            <a class="btn btn-orange" href="{% url 'product_list' %}">Xem sản phẩm</a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% if preferred_device %}
+      <section class="container home-section" id="device-recommendations">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THEO ĐIỆN THOẠI ĐÃ CHỌN</p>
+            <h2>Phụ kiện cho điện thoại của bạn</h2>
+            <p class="section-subtitle">{{ preferred_device }} · Sản phẩm có tương thích đã xác nhận.</p>
+          </div>
+          <a href="{% url 'profile' %}">Đổi điện thoại ↗</a>
+        </div>
+        <div class="product-grid">
+          {% for product in device_recommendation.products %}
+            {% include 'catalog/card.html' %}
+          {% empty %}
+            <div class="empty-state">
+              <h3>Chưa có phụ kiện phù hợp để gợi ý thêm</h3>
+              <p>Bạn vẫn có thể khám phá danh mục hoặc đổi điện thoại trong tài khoản.</p>
+              <a class="btn btn-orange" href="{% url 'product_list' %}">Khám phá sản phẩm</a>
+            </div>
+          {% endfor %}
+        </div>
+        {% if device_recommendation.products %}
+          <a class="filter-reset" href="{% url 'product_list' %}?phone={{ preferred_device.pk }}">Xem tất cả phụ kiện cho điện thoại này</a>
+        {% endif %}
+      </section>
+    {% endif %}
+    <section class="container home-promos">
+      <a class="promo-card promo-charging"
+         href="{% url 'product_list' %}{% if charging_category %}?category={{ charging_category.pk }}{% endif %}">
+        <div>
+          <p class="eyebrow">NĂNG LƯỢNG CHO MỖI NGÀY</p>
+          <h2>
+            Sạc gọn gàng.
+            <br>
+            Sẵn sàng kết nối.
+          </h2>
+          <p>Tìm bộ sạc phù hợp với nhịp sống của bạn.</p>
+          <span>Khám phá bộ sạc
+            {% include 'components/icon.html' with name='arrow' %}
+          </span>
+        </div>
+        <div class="promo-symbol">{% include 'components/icon.html' with name='bolt' %}</div>
+      </a><a class="promo-card promo-devices" href="{% url 'profile' %}">
+        <div>
+          <p class="eyebrow">CHỌN THÊM NẾU BẠN CẦN</p>
+          <h2>
+            Thiết bị của bạn.
+            <br>
+            Lựa chọn của bạn.
+          </h2>
+          <p>Thêm điện thoại để có một nhóm phụ kiện tương thích riêng. Bạn có thể bỏ qua.</p>
+          <span>{% if preferred_device %}Đổi điện thoại{% else %}Chọn điện thoại{% endif %}
+            {% include 'components/icon.html' with name='arrow' %}
+          </span>
+        </div>
+        <div class="promo-symbol">{% include 'components/icon.html' with name='phone' %}</div>
+      </a>
+    </section>
+    {% if new_products %}
+      <section class="container home-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THÊM MỘT CHÚT TIỆN ÍCH</p>
+            <h2>Sản phẩm mới</h2>
+          </div>
+          <a href="{% url 'product_list' %}">Xem bộ sưu tập
+            {% include 'components/icon.html' with name='arrow' %}
+          </a>
+        </div>
+        <div class="product-grid">
+          {% for product in new_products %}
+            {% include 'catalog/card.html' %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    <section class="container home-ending">
+      <div>
+        <p class="eyebrow">PHỤ KIỆN NHỎ. CHẤT RIÊNG LỚN.</p>
+        <h2>Tìm mảnh ghép cho thiết bị của bạn.</h2>
+      </div>
+      <a class="btn btn-orange" href="{% url 'product_list' %}">Bắt đầu khám phá
+        {% include 'components/icon.html' with name='arrow' %}
+      </a>
+    </section>
+{% endblock %}

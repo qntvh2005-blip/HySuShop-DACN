@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Khám phá sản phẩm · HySuShop</title>
+{% endblock %}
+{% block content %}
+  <section class="container page-section">
+    <p class="breadcrumb-text">
+      <a href="{% url 'home' %}">Trang chủ</a> / Sản phẩm
+    </p>
+    <div class="section-heading catalog-heading">
+      <div>
+        <p class="eyebrow">BỘ SƯU TẬP PHỤ KIỆN</p>
+        <h1>Phụ kiện điện thoại</h1>
+      </div>
+      <span>{{ page_obj.paginator.count }} sản phẩm</span>
+    </div>
+    <div class="catalog-layout">
+      <aside class="filter-panel">
+        <h2>Lọc sản phẩm</h2>
+        <form method="get">
+          {{ form.non_field_errors }}
+          {% for field in form %}
+            <p{% if field.name == "phone" %} class="device-filter-field"{% endif %}>
+              {{ field.label_tag }}{{ field }}{{ field.errors }}
+            </p>
+          {% endfor %}
+          <button class="btn btn-orange w-100">Áp dụng bộ lọc</button>
+          <a class="filter-reset" href="{% url 'product_list' %}">Xóa bộ lọc</a>
+        </form>
+      </aside>
+      <div>
+        {% if form.cleaned_data.phone %}
+          <p class="muted">Kết quả gồm phụ kiện theo mẫu máy và phụ kiện dùng chung. Xem chi tiết để kiểm tra điều kiện sử dụng.</p>
+        {% endif %}
+        <div class="product-grid catalog-grid">
+          {% for product in page_obj %}
+            {% include 'catalog/card.html' %}
+          {% empty %}
+            <div class="empty-state">
+              <h3>Chưa tìm thấy sản phẩm</h3>
+              <p>Thử đổi từ khóa hoặc bỏ một điều kiện lọc để xem thêm sản phẩm.</p>
+              <a href="{% url 'product_list' %}">Xem lại danh mục</a>
+            </div>
+          {% endfor %}
+        </div>
+        {% include 'components/pagination.html' %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

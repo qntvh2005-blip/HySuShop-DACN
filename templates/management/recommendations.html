@@ -1,0 +1,66 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  Hệ thống gợi ý · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Hệ thống gợi ý</h1>
+      <p>Theo dõi kết quả nghiên cứu và các lần gợi ý trên website.</p>
+    </div>
+  </div>
+  <section class="manage-panel">
+    <div class="panel-body pt-3">{% include 'benchmark_panel.html' %}</div>
+  </section>
+  <section class="manage-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Lịch sử sinh gợi ý</h2>
+        <p>Các lần gọi trên website; tách biệt với đánh giá thực nghiệm ở trên</p>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Thời điểm</th>
+            <th>Tài khoản</th>
+            <th>Vị trí hiển thị</th>
+            <th>Phương pháp</th>
+            <th>Số kết quả</th>
+            <th>Thời gian</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in page_obj %}
+            <tr>
+              <td><a href="{% url 'manage_recommendation_detail' entry.pk %}">{{ entry.created_at|date:'d/m/Y H:i' }}</a></td>
+              <td>{{ entry.user.username|default:'Khách chưa đăng nhập' }}</td>
+              <td>
+                {{ entry.get_context_display }}
+              </td>
+              <td>
+                {% if entry.fallback_reason == 'no_known_history' or entry.fallback_reason == 'zero_scores' %}
+                  Popularity <small>Dự phòng khi chưa có lịch sử hoặc điểm phù hợp</small>
+                {% elif entry.algorithm == 'operational_popularity' %}
+                  Phổ biến vận hành
+                {% else %}
+                  {{ entry.algorithm }}
+                {% endif %}
+                <small>{{ entry.model_version }}</small>
+              </td>
+              <td>{{ entry.item_ids|length }}</td>
+              <td>{{ entry.duration_ms|floatformat:1 }} ms</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td class="empty-row" colspan="6">Chưa có lịch sử gợi ý.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with show_count=True %}
+  </section>
+{% endblock %}

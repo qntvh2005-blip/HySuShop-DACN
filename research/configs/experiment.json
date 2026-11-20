@@ -1,0 +1,53 @@
+{
+  "protocol_version": "1.0",
+  "status": "protocol_locked_before_model_tuning",
+  "seed": 42,
+  "dataset": {
+    "name": "Amazon Reviews 2023",
+    "category": "Cell Phones and Accessories",
+    "item_key": "parent_asin",
+    "positive_rating_min": 4,
+    "core_min_user_positives": 5,
+    "core_min_item_positives": 5,
+    "target_items": [2000, 5000],
+    "target_positives": [20000, 50000]
+  },
+  "preprocessing": {
+    "filter_version": "1.1",
+    "timestamp_unit": "milliseconds",
+    "max_items": 2000,
+    "max_users": 4000,
+    "item_subset": "positive_degree_desc_then_seeded_hash",
+    "user_subset": "seeded_hash_order",
+    "rerun_core_after_each_subset": true,
+    "catalog_freeze": "before_ambiguous_boundary_user_exclusion"
+  },
+  "split": {
+    "strategy": "per_user_positive_leave_last_two_out",
+    "timestamp_boundary_policy": "exclude_non_strict_user_boundaries",
+    "refit_on_train_dev": false,
+    "test_profile": "train_only",
+    "seen_history": "all_ratings_strictly_before_stage_target"
+  },
+  "candidates": {
+    "strategy": "full_catalog_minus_observed_seen",
+    "negative_sampling": false,
+    "tie_break": "item_id_ascending"
+  },
+  "models": {
+    "popularity": {"fit_split": "train"},
+    "content": {"ngram_grid": [[1, 1], [1, 2]], "min_df_grid": [1, 2]},
+    "item_cf": {"neighbors_grid": [20, 50, 100], "aggregation": "sum_similarity_divided_by_history_size"},
+    "hybrid": {"alpha_grid": [0.25, 0.5, 0.75], "normalization": "candidate_min_max", "epsilon": 1e-12}
+  },
+  "selection": {"split": "development", "primary": "ndcg@10", "secondary": "hit_rate@10", "final_tie": "first_in_config_grid"},
+  "evaluation": {
+    "k": [5, 10],
+    "metrics": ["precision", "recall", "ndcg", "hit_rate"],
+    "sparse_train_positives": [3, 5],
+    "active_train_positives_min": 6,
+    "timing_repeats": 3,
+    "timing_warmup_users_max": 20,
+    "threads": 1
+  }
+}

@@ -1,0 +1,73 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  Quản lý tài khoản · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Tài khoản</h1>
+      <p>Quản lý tài khoản khách hàng, quản trị viên và trạng thái đăng nhập.</p>
+    </div>
+    <a class="manage-button primary" href="{% url 'manage_account_create' %}">
+      {% include 'components/icon.html' with name='plus' %}
+    Tạo tài khoản</a>
+  </div>
+  <section class="manage-panel">
+    <form class="manage-filters" method="get">
+      <label class="filter-search">
+        {% include 'components/icon.html' with name='search' %}
+        <input name="q"
+               value="{{ query }}"
+               maxlength="150"
+               placeholder="Tên đăng nhập hoặc email"
+               aria-label="Tìm tài khoản">
+      </label>
+      <button class="manage-button">Tìm kiếm</button>
+    </form>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Tài khoản</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for account in page_obj %}
+            <tr>
+              <td class="primary-text">{{ account.username }}</td>
+              <td>{{ account.email|default:'—' }}</td>
+              <td>{{ account.role_label }}</td>
+              <td>
+                <span class="state-pill {% if account.is_active %}active{% endif %}">
+                  {% if account.is_active %}
+                    Đang hoạt động
+                  {% else %}
+                    Đã khóa
+                  {% endif %}
+                </span>
+              </td>
+              <td>
+                {% if account.access_protected %}
+                  <span class="manage-muted">Được bảo vệ</span>
+                {% else %}
+                  <a class="text-link"
+                     href="{% url 'manage_account_access' account.pk %}">Chỉnh sửa quyền truy cập</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="empty-row">Không tìm thấy tài khoản.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with pagination_label='Phân trang tài khoản' %}
+  </section>
+{% endblock %}

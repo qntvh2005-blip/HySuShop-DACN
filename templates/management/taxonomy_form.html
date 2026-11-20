@@ -1,0 +1,36 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  {{ label }} · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>
+        {% if object.pk %}
+          Chỉnh sửa
+        {% else %}
+          Thêm
+        {% endif %}
+        {{ label|lower }}
+      </h1>
+      <p>Thông tin liên kết trên cửa hàng sẽ được cập nhật cùng thay đổi này.</p>
+    </div>
+    <a class="manage-button" href="{% url 'manage_taxonomy' kind %}">← Danh sách</a>
+  </div>
+  <section class="manage-panel" style="max-width:750px">
+    <div class="panel-heading">
+      <h2>Thông tin chi tiết</h2>
+    </div>
+    <div class="panel-body">
+      <form class="manage-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+          <button class="manage-button primary">Lưu thay đổi</button>
+          <a class="manage-button" href="{% url 'manage_taxonomy' kind %}">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

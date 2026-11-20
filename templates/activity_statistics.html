@@ -1,0 +1,44 @@
+<div class="rank-columns">
+  <section class="manage-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Sản phẩm được xem nhiều</h2>
+        <p>Lượt xem trên website, gồm khách chưa đăng nhập</p>
+      </div>
+    </div>
+    <ol class="ranking-list">
+      {% for row in most_viewed %}
+        <li>
+          <a href="{% url 'manage_product_edit' row.product.pk %}">{{ row.product.name }}
+            {% if not row.product.is_active %}
+              · Ngừng bán
+            {% endif %}
+          </a><strong>{{ row.value }}</strong>
+        </li>
+      {% empty %}
+        <li>Chưa ghi nhận lượt xem.</li>
+      {% endfor %}
+    </ol>
+  </section>
+  <section class="manage-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Sản phẩm được mua nhiều</h2>
+        <p>Số lượng trong đơn đã giao, không tính đơn hủy hoặc trả hàng</p>
+      </div>
+    </div>
+    <ol class="ranking-list">
+      {% for row in best_sellers %}
+        <li>
+          <a href="{% url 'manage_product_edit' row.product.pk %}">{{ row.product.name }}
+            {% if not row.product.is_active %}
+              · Ngừng bán
+            {% endif %}
+          </a><strong>{{ row.value }}</strong>
+        </li>
+      {% empty %}
+        <li>Chưa có sản phẩm trong đơn đã giao.</li>
+      {% endfor %}
+    </ol>
+  </section>
+</div>

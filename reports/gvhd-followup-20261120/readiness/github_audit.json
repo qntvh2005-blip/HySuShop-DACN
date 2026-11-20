@@ -1,0 +1,12 @@
+{
+  "source_files_selected_by_git": 238,
+  "research_data_pipeline_included": true,
+  "private_env_venv_data_artifacts_excluded": true,
+  "example_env_included": true,
+  "referenced_test_logs_included": true,
+  "local_submission_review_excluded": true,
+  "actual_local_secret_values_found": 0,
+  "private_key_and_github_token_patterns_found": 0,
+  "largest_source_file_bytes": 3745692,
+  "scope": "Fresh temporary Git repository and git add --dry-run on packaged source; did not create a repository in the project, commit or publish. Pattern/value scan is not a guarantee that every possible secret has been identified."
+}

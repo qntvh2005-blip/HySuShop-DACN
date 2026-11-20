@@ -1,0 +1,19 @@
+{
+  "alpha": 0.5,
+  "content": {
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "dataset_manifest_sha256": "6b1bb7900db507a3b055df4b5e62606184f12e9f4e9a60cc0d516c19dd5b1252",
+  "item_cf": {
+    "neighbors": 100
+  },
+  "protocol_version": "1.0",
+  "refit": false,
+  "selected_on": "development",
+  "serving_algorithm": "hybrid",
+  "source_kind": "official_raw"
+}

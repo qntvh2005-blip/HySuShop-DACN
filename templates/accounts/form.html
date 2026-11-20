@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="container page-section">
+    <div class="form-card">
+      <p class="eyebrow">HYSUSHOP</p>
+      <h1>{{ title }}</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-dark w-100">{{ button|default:'Lưu thay đổi' }}</button>
+      </form>
+      <div class="form-links">
+        <a href="{% url 'login' %}">Đăng nhập</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'password_change' %}">Đổi mật khẩu</a><a href="{% url 'interaction_history' %}">Lịch sử hoạt động</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

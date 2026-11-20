@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#f36b28">
+    {% block title %}
+      <title>HySuShop · Phụ kiện cho mỗi ngày</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop.css' %}?v=hysushop-5">
+    <link rel="stylesheet" href="{% static 'storefront.css' %}?v=16">
+    <link rel="stylesheet" href="{% static 'number-stepper.css' %}">
+    <script src="{% static 'number-stepper.js' %}" defer></script>
+  </head>
+  <body>
+    <div class="topline">
+      <div class="container">
+        <span>PHỤ KIỆN CHUẨN GU. KẾT NỐI MỖI NGÀY.</span><span>Khám phá · Lựa chọn · Kết nối</span>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="{% url 'home' %}" aria-label="HySuShop · Trang chủ"><span class="brand-primary">HySu</span><span class="brand-secondary">Shop</span><span class="brand-point">.</span></a>
+        <form class="header-search" action="{% url 'product_list' %}">
+          <label class="visually-hidden" for="search">Tìm sản phẩm</label>
+          {% include 'components/icon.html' with name='search' %}
+          <input id="search"
+                 name="q"
+                 value="{{ request.GET.q }}"
+                 placeholder="Bạn đang tìm phụ kiện gì?"
+                 maxlength="200">
+          <button>Tìm kiếm</button>
+        </form>
+        <div class="header-actions">
+          {% if user.is_authenticated %}
+            <details class="account-menu">
+              <summary>
+                {% include 'components/icon.html' with name='users' %}
+                <span>{{ user.username|truncatechars:16 }}</span>
+              </summary>
+              <div>
+                <a href="{% url 'profile' %}">Thông tin tài khoản</a><a href="{% url 'interaction_history' %}">Lịch sử hoạt động</a><a href="{% url 'password_change' %}">Đổi mật khẩu</a>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button>Đăng xuất</button>
+                </form>
+              </div>
+            </details>
+          {% else %}
+            <a class="account-link" href="{% url 'login' %}">
+              {% include 'components/icon.html' with name='users' %}
+              <span>Đăng nhập</span></a>
+          {% endif %}
+          <a class="cart-link"
+             href="{% url 'cart' %}"
+             aria-label="Giỏ hàng · {{ cart_quantity }} sản phẩm">
+            {% include 'components/icon.html' with name='bag' %}
+            <span>Giỏ hàng</span><b>{{ cart_quantity }}</b></a>
+        </div>
+      </div>
+    </header>
+    <nav class="site-nav" aria-label="Cửa hàng">
+      <div class="container nav-inner">
+        <div>
+          <a class="nav-catalog" href="{% url 'product_list' %}">
+            {% include 'components/icon.html' with name='grid' %}
+            Khám phá sản phẩm</a><a href="{% url 'home' %}">Trang chủ</a><a href="{% url 'favorites' %}">Yêu thích</a><a href="{% url 'orders' %}">Đơn hàng của bạn</a>
+        </div>
+        <div>
+          {% if user.is_staff %}
+            <a class="management-entry" href="{% url 'dashboard' %}">Quản trị cửa hàng ↗</a>
+          {% else %}
+            <span class="nav-note">Chọn phụ kiện, thêm chất riêng.</span>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <main>
+      {% if messages %}
+        <div class="container mt-3" aria-live="polite">
+          {% for message in messages %}
+            <div class="notice {{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="{% url 'home' %}"><span class="brand-primary">HySu</span><span class="brand-secondary">Shop</span><span class="brand-point">.</span></a>
+          <p>
+            Phụ kiện nhỏ, trải nghiệm lớn.
+            <br>
+            Đồng hành cùng thiết bị và phong cách của bạn.
+          </p>
+        </div>
+        <div>
+          <strong>Khám phá HySuShop</strong><a href="{% url 'product_list' %}">Tất cả sản phẩm</a><a href="{% url 'favorites' %}">Sản phẩm yêu thích</a>
+        </div>
+        <div>
+          <strong>Tài khoản của bạn</strong><a href="{% url 'profile' %}">Thông tin cá nhân</a><a href="{% url 'orders' %}">Theo dõi đơn hàng</a><a href="{% url 'interaction_history' %}">Lịch sử hoạt động</a>
+        </div>
+      </div>
+      <div class="container footer-note">
+        © HySuShop · Đồ án chuyên ngành Trần Văn Hiếu<span>Giá, tồn kho và thanh toán mô phỏng. Không phát sinh giao dịch tiền thật.</span>
+      </div>
+    </footer>
+    <script src="{% static 'product-images.js' %}?v=2" defer></script>
+  </body>
+</html>

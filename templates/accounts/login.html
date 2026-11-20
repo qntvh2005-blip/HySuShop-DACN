@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="container page-section">
+    <div class="form-card">
+      <p class="eyebrow">CHÀO MỪNG BẠN TRỞ LẠI</p>
+      <h1>Đăng nhập</h1>
+      <p>Tiếp tục khám phá những phụ kiện dành cho bạn.</p>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if next %}
+          <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
+        <button class="btn btn-dark w-100">Đăng nhập</button>
+      </form>
+      <div class="form-links">
+        Chưa có tài khoản? <a href="{% url 'signup' %}">Đăng ký</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

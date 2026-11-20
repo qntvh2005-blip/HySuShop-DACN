@@ -1,0 +1,28 @@
+{% extends 'management/base.html' %}
+{% block title %}Chi tiết gợi ý · HySuShop{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div><h1>Chi tiết lần gợi ý</h1><p>{{ entry.created_at|date:'d/m/Y H:i:s' }} · {{ entry.user.username|default:'Khách chưa đăng nhập' }} · {{ entry.get_context_display }}</p></div>
+    <a class="manage-button" href="{% url 'manage_recommendations' %}">Lịch sử gợi ý</a>
+  </div>
+  <section class="manage-panel"><div class="panel-body">
+    <p>Phương pháp {{ entry.algorithm }} · Phiên bản {{ entry.model_version }}</p>
+    {% if entry.fallback_reason %}<p>Lý do dự phòng {{ entry.fallback_reason }}</p>{% endif %}
+    {% if evidence %}
+      <p>Lần này xét {{ evidence.candidate_count }} ứng viên. Trọng số kết hợp {{ evidence.alpha }}.</p>
+      <p>Điểm thể hiện thứ tự ưu tiên trong lần xếp hạng này. Mối liên hệ đã học có thể đưa vào sản phẩm khác danh mục.</p>
+    {% else %}<p>Lần gợi ý này chưa lưu chi tiết thành phần điểm hoặc đã dùng danh sách dự phòng.</p>{% endif %}
+  </div></section>
+  {% for row in rows %}
+    <section class="manage-panel"><div class="panel-body">
+      <h2>{{ forloop.counter }}. {{ row.name }}</h2>
+      <p>Điểm xếp hạng {{ row.score|floatformat:6 }}</p>
+      <p>Điểm nội dung {{ row.content_score|floatformat:6 }} · Sau chuẩn hóa {{ row.content_normalized|floatformat:6 }}</p>
+      <p>Điểm cộng tác {{ row.cf_score|floatformat:6 }} · Sau chuẩn hóa {{ row.cf_normalized|floatformat:6 }}</p>
+      <h3>Sản phẩm trong lịch sử có liên hệ</h3>
+      {% for source in row.sources %}
+        <p>{{ source.name }}<br>Trọng số {{ source.weight }} · Tương đồng nội dung {{ source.content_similarity|floatformat:4 }} · Liên hệ cộng tác {{ source.cf_similarity|floatformat:4 }}</p>
+      {% empty %}<p>Thứ tự đến từ điểm phổ biến hoặc cách xử lý các điểm bằng nhau.</p>{% endfor %}
+    </div></section>
+  {% endfor %}
+{% endblock %}

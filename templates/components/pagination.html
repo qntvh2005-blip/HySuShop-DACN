@@ -1,0 +1,12 @@
+{% if page_obj.paginator.num_pages > 1 %}
+  <nav class="pagination-row" aria-label="{{ pagination_label|default:'Phân trang' }}">
+    {% if show_count %}<span>{{ page_obj.paginator.count }} kết quả</span>{% endif %}
+    {% if page_obj.has_previous %}
+      <a href="?{{ query_string }}&amp;page={{ page_obj.previous_page_number }}">← Trước</a>
+    {% endif %}
+    <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?{{ query_string }}&amp;page={{ page_obj.next_page_number }}">Tiếp →</a>
+    {% endif %}
+  </nav>
+{% endif %}

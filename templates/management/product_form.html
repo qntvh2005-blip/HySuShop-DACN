@@ -1,0 +1,215 @@
+{% extends 'management/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  {% if editing %}
+    Chỉnh sửa sản phẩm
+  {% else %}
+    Thêm sản phẩm
+  {% endif %}
+  · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>
+        {% if editing %}
+          Chỉnh sửa sản phẩm
+        {% else %}
+          Thêm sản phẩm
+        {% endif %}
+      </h1>
+      <p>
+        {% if editing %}
+          Mã: {{ product.external_item_id }}
+        {% else %}
+          Sản phẩm thêm thủ công không tự động tham gia tập thực nghiệm.
+        {% endif %}
+      </p>
+    </div>
+    <a class="manage-button" href="{% url 'manage_products' %}">← Danh sách sản phẩm</a>
+  </div>
+  <form method="post" class="manage-form">
+    {% csrf_token %}
+    {{ form.revision }}{{ form.non_field_errors }}{{ form.revision.errors }}
+    <div class="manage-form-grid">
+      <section class="manage-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Thông tin sản phẩm</h2>
+            <p>Nội dung được hiển thị trực tiếp trên cửa hàng</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          {% for field in form %}
+            {% if field.name == 'name' or field.name == 'external_item_id' or field.name == 'brand' or field.name == 'categories' or field.name == 'description' or field.name == 'feature_lines' %}
+              {% if field.name == 'categories' %}
+                <fieldset class="category-field">
+                  <legend>Danh mục</legend>
+                  <details class="category-picker"{% if field.errors %} open{% endif %}>
+                    <summary>Chọn danh mục</summary>
+                    <div class="category-options">{{ field }}</div>
+                  </details>
+                  {{ field.errors }}
+                </fieldset>
+              {% else %}
+                <p>
+                  {{ field.label_tag }}{{ field }}{{ field.errors }}
+                  {% if field.help_text %}
+                    <span class="helptext">{{ field.help_text }}</span>
+                  {% endif %}
+                </p>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+      <div>
+        <section class="manage-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Thông tin bán hàng</h2>
+              <p>Giá và số lượng tồn kho mô phỏng</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p>{{ form.price.label_tag }}{{ form.price }}{{ form.price.errors }}</p>
+            <p>{{ form.stock.label_tag }}{{ form.stock }}{{ form.stock.errors }}</p>
+            <p>{{ form.is_active.label_tag }}{{ form.is_active }}{{ form.is_active.errors }}</p>
+            <p>
+              {{ form.is_universal_accessory }} {{ form.is_universal_accessory.label_tag }}
+              {{ form.is_universal_accessory.errors }}
+              <span class="helptext">{{ form.is_universal_accessory.help_text }}</span>
+            </p>
+            {% if product.source_metadata.dataset_manifest_sha256 %}
+              <div class="manage-hint">
+                Mã định danh và dữ liệu nguồn được bảo vệ. Để ẩn sản phẩm khỏi cửa hàng, bỏ chọn “Đang mở bán”.
+              </div>
+            {% endif %}
+            <button class="manage-button primary w-100">
+              {% include 'components/icon.html' with name='check' %}
+              Lưu sản phẩm
+            </button>
+            {% if editing and product.is_active %}
+              <a class="manage-button w-100 mt-3"
+                 href="{% url 'product_detail' product.slug %}">Xem trên cửa hàng ↗</a>
+            {% endif %}
+          </div>
+        </section>
+        {% if product.source_metadata.title %}
+          <section class="manage-panel">
+            <div class="panel-heading">
+              <h2>Thông tin nguồn để đối chiếu</h2>
+            </div>
+            <div class="panel-body">
+              <p class="manage-muted">{{ product.source_metadata.title }}</p>
+            </div>
+          </section>
+        {% endif %}
+      </div>
+    </div>
+  </form>
+  {% if editing %}
+    <div class="manage-form-grid">
+      <section class="manage-panel" id="product-images">
+        <div class="panel-heading">
+          <div>
+            <h2>Hình ảnh sản phẩm</h2>
+            <p>Ảnh hiện có trên cửa hàng</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="media-list">
+            {% for image in images %}
+              <div class="media-item">
+                {% if image.file %}
+                  <img src="{{ image.file.url }}" alt="{{ image.alt }}">
+                {% else %}
+                  <img src="{{ image.image_url }}" alt="{{ image.alt }}">
+                {% endif %}
+                {% if perms.catalog.delete_productimage %}
+                  <form method="post" action="{% url 'manage_image_delete' product.pk image.pk %}">
+                    {% csrf_token %}
+                    <button class="manage-button subtle danger">Gỡ ảnh</button>
+                  </form>
+                {% endif %}
+              </div>
+            {% empty %}
+              <p class="manage-muted">Chưa có ảnh sản phẩm.</p>
+            {% endfor %}
+          </div>
+          {% if perms.catalog.add_productimage %}
+            <form class="manage-form"
+                  method="post"
+                  enctype="multipart/form-data"
+                  data-product-image-upload
+                  action="{% url 'manage_image_add' product.pk %}">
+              {% csrf_token %}
+              {{ image_form.as_p }}
+              <img class="product-upload-preview" alt="Xem trước ảnh sản phẩm" hidden>
+              <button class="manage-button">
+                {% include 'components/icon.html' with name='plus' %}
+                Thêm ảnh
+              </button>
+            </form>
+          {% endif %}
+        </div>
+      </section>
+      <section class="manage-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Thiết bị tương thích</h2>
+            <p>Danh sách mẫu máy tương thích đã xác nhận</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          {% for link in compatibilities %}
+            <div class="compatibility-row">
+              <span>{{ link.phone_model }}</span><span class="state-pill {% if link.verified %}active{% endif %}">
+                {% if link.verified %}
+                  Đã xác nhận
+                {% else %}
+                  Không xác nhận
+                {% endif %}
+              </span>
+            </div>
+          {% empty %}
+            {% if product.is_universal_accessory %}
+              <p class="manage-muted">Sản phẩm được đánh dấu là phụ kiện dùng chung.</p>
+            {% else %}
+              <p class="manage-muted">Chưa có mẫu máy được ghi nhận.</p>
+            {% endif %}
+          {% endfor %}
+          {% if perms.catalog.change_productcompatibility %}
+            <form class="manage-form mt-4"
+                  method="post"
+                  action="{% url 'manage_compatibility_save' product.pk %}">
+              {% csrf_token %}
+              {{ compatibility_form.as_p }}
+              <p class="manage-muted">
+                Chọn lại thiết bị và bỏ dấu xác nhận để loại liên kết sai khỏi cửa hàng.
+              </p>
+              <button class="manage-button">Lưu tương thích</button>
+            </form>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+    {% if not product.source_metadata.dataset_manifest_sha256 and perms.catalog.delete_product %}
+      <details class="manage-panel benchmark-disclosure">
+        <summary>Xóa sản phẩm thủ công</summary>
+        <div>
+          <p class="manage-muted">Chỉ xóa được sản phẩm chưa có lịch sử giao dịch hoặc tương tác.</p>
+          <form method="post" action="{% url 'manage_product_delete' product.pk %}">
+            {% csrf_token %}
+            <button class="manage-button danger">Xóa sản phẩm này</button>
+          </form>
+        </div>
+      </details>
+    {% endif %}
+  {% endif %}
+  {% if editing and perms.catalog.add_productimage %}
+    <script src="{% static 'product-image-preview.js' %}" defer></script>
+  {% endif %}
+{% endblock %}

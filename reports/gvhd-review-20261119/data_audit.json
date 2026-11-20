@@ -1,0 +1,19 @@
+{
+  "catalog_metadata": "TF-IDF is fit on the fixed catalog; historical metadata availability is not guaranteed by the source",
+  "groups": {
+    "active": 162,
+    "sparse": 1452
+  },
+  "leakage_limit": "core and item selection use the full cohort before temporal splitting; results are conditional on this retrospective catalog",
+  "rankings_reproduced": 6456,
+  "refit_or_test_tuning": false,
+  "top_decile_items": 71,
+  "top_decile_train_share": 0.3834296724470135,
+  "validation": {
+    "items": 709,
+    "source_kind": "official_raw",
+    "status": "passed",
+    "user_stage_pairs": 3228,
+    "users": 1614
+  }
+}

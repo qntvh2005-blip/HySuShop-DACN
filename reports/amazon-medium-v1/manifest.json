@@ -1,0 +1,49 @@
+{
+  "artifact_bundle_sha256": "062e6d4ee125d1d7ff646768ecb8605a59d65ae9bff8c5d8c37d57d89eb78764",
+  "artifact_directory": "D:\\DACN\\artifacts\\amazon-medium-v1",
+  "created_at_utc": "2026-10-19T09:28:51.526107+00:00",
+  "dataset_directory": "D:\\DACN\\data\\processed\\amazon-medium-v1",
+  "dependencies": {
+    "joblib": "1.6.0",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.1",
+    "threadpoolctl": "3.7.0"
+  },
+  "locked_config": {
+    "alpha": 0.5,
+    "content": {
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ]
+    },
+    "dataset_manifest_sha256": "6b1bb7900db507a3b055df4b5e62606184f12e9f4e9a60cc0d516c19dd5b1252",
+    "item_cf": {
+      "neighbors": 100
+    },
+    "protocol_version": "1.0",
+    "refit": false,
+    "selected_on": "development",
+    "serving_algorithm": "hybrid",
+    "source_kind": "official_raw"
+  },
+  "logical_cpus": 16,
+  "outputs": {
+    "development_grid.json": "69949cfdc70ffd010f9fd47bbf74d734dca04fd2e746a052cb53a4ea38aa2223",
+    "fit_times.json": "a0c86f1efa126cd42b4057e561b6237ee0e00cd65cd1e6176bc9753615ecc84f",
+    "locked_config.json": "c178aabfadb6299ca3be1b06421fcfd728248e1a5e573d612f35261898805587",
+    "test_metrics.csv": "f3313100b8a6457344e2649801daf259b52c6dd8a97f73d8ab417b44f605a0f6",
+    "test_metrics.json": "98f46fd698c6c664d50bdfe60396998b90c72ccf7b66d2dd601ef4486631332b",
+    "test_per_user.jsonl": "7fe2939a45bb31ee4b1d0f88a8dc8537752e560f7dca8878107a03b671f3edc1"
+  },
+  "platform": "Windows-10-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+  "python": "3.11.9",
+  "source_kind": "official_raw",
+  "status": "complete",
+  "threads": 1,
+  "timing_scope": "warm scoring and top-10 ranking; excludes DB/load/fit/candidate expansion"
+}

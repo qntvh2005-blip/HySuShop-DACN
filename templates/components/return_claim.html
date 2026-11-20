@@ -1,0 +1,23 @@
+{% load shop %}
+<p><strong>{{ claim.get_decision_display }}</strong> · {{ claim.created_at|date:'d/m/Y H:i' }}</p>
+{% for line in claim.items.all %}
+  <p>
+    <strong>{{ line.order_item.name_snapshot }}</strong><br>
+    Số lượng trả {{ line.quantity }} · Tiền hàng {{ line.refund_amount|money }}
+    {% if line.resellable_quantity != None %}
+      <br>Bán lại được {{ line.resellable_quantity }} · Hỏng/không bán lại {{ line.damaged_quantity }}
+    {% endif %}
+  </p>
+{% endfor %}
+{% if order.refunded_amount %}<p>Đã hoàn mô phỏng {{ order.refunded_amount|money }}</p>{% endif %}
+<p><strong>Lý do của khách</strong><br>{{ claim.reason|linebreaksbr }}</p>
+{% url 'return_evidence' order.number as evidence_url %}
+<p>
+  <a href="{{ evidence_url }}" target="_blank" rel="noopener">
+    <img class="img-thumbnail" src="{{ evidence_url }}" alt="Ảnh bằng chứng trả hàng" width="180" loading="lazy">
+    <span class="d-block mt-2">Xem ảnh đầy đủ</span>
+  </a>
+</p>
+{% if claim.decision_note %}
+  <p><strong>Phản hồi của quản trị viên</strong><br>{{ claim.decision_note|linebreaksbr }}</p>
+{% endif %}

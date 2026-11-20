@@ -1,0 +1,75 @@
+{% extends 'management/base.html' %}
+
+{% load shop %}
+
+{% block title %}
+  Đơn hàng · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Đơn hàng</h1>
+      <p>Theo dõi đơn, xử lý giao hàng và kiểm tra lịch sử trạng thái.</p>
+    </div>
+  </div>
+  <section class="manage-panel">
+    <form method="get" class="manage-filters">
+      <label class="filter-search">
+        {% include 'components/icon.html' with name='search' %}
+        <input name="q"
+               value="{{ query }}"
+               maxlength="150"
+               placeholder="Tìm mã đơn, khách hàng, số điện thoại"
+               aria-label="Tìm đơn hàng">
+      </label>
+      <select name="state" aria-label="Trạng thái đơn hàng">
+        <option value="">Tất cả trạng thái</option>
+        {% for value,label in statuses %}
+          <option value="{{ value }}"
+                  {% if state == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <button class="manage-button primary">Tìm kiếm</button>
+      {% if query or state %}
+        <a class="manage-button" href="{% url 'manage_orders' %}">Xóa bộ lọc</a>
+      {% endif %}
+    </form>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Mã đơn</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in page_obj %}
+            <tr>
+              <td class="primary-text">#{{ order.number|stringformat:'s'|slice:':8'|upper }}</td>
+              <td>
+                {{ order.recipient_name }}<small>{{ order.phone }} · {{ order.user.username }}</small>
+              </td>
+              <td>{{ order.created_at|date:'d/m/Y H:i' }}</td>
+              <td class="primary-text">{{ order.total|money }}</td>
+              <td>
+                <span class="state-pill {{ order.status }}">{{ order.get_status_display }}</span>
+              </td>
+              <td>
+                <a class="manage-button row-action" href="{% url 'manage_order_detail' order.pk %}">Chi tiết →</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td class="empty-row" colspan="6">Chưa có đơn hàng phù hợp.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with show_count=True %}
+  </section>
+{% endblock %}

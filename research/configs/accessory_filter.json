@@ -1,0 +1,76 @@
+{
+  "version": "1.2",
+  "description": "Conservative English title/category rules; no review content or aggregate ratings used as features.",
+  "category_allow_patterns": [
+    "cases?",
+    "screen protectors?",
+    "chargers?",
+    "charging",
+    "cables?",
+    "power banks?",
+    "battery packs?",
+    "mounts?",
+    "stands?",
+    "holders?",
+    "headsets?",
+    "earbuds?",
+    "headphones?",
+    "stylus",
+    "styli",
+    "adapters?",
+    "accessory kits?",
+    "lens attachments?",
+    "selfie sticks?",
+    "grips?"
+  ],
+  "category_deny_leaf_patterns": [
+    "^cell phones$",
+    "^unlocked cell phones$",
+    "^carrier cell phones$",
+    "^smartphones$",
+    "^basic cell phones$",
+    "^sim cards$",
+    "^smartwatches$",
+    "^tablets$"
+  ],
+  "category_deny_patterns": [
+    "smartwatch accessories",
+    "tablet accessories",
+    "tablet cases"
+  ],
+  "title_allow_patterns": [
+    "(?:phone|iphone|galaxy|pixel|smartphone).{0,45}(?:case|cover|protector|charger|mount|holder|stand|grip)",
+    "(?:case|cover|protector|charger|mount|holder|stand|grip).{0,45}(?:phone|iphone|galaxy|pixel|smartphone)",
+    "(?:usb[ -]?c|lightning).{0,30}(?:cable|charger|adapter)",
+    "(?:power bank|wireless charger|charging cable|selfie stick|phone headset|phone stylus)"
+  ],
+  "title_deny_patterns": [
+    "\\bunlocked\\b.{0,30}\\b(?:smartphone|cell phone|mobile phone)\\b",
+    "\\b(?:prepaid|locked)\\b.{0,30}\\b(?:smartphone|cell phone)\\b",
+    "\\b(?:sim card|service plan|tablet computer)\\b"
+  ],
+  "reviewed_exclusions": {
+    "B00393KNVQ": "TV wall mount, not a phone accessory",
+    "B00ZOWJI7A": "Watch charger only",
+    "B010LFIXMA": "Galaxy Watch stand only",
+    "B01L7TLQN2": "Fitbit Charge 2 protector only",
+    "B01LW6ECMM": "Fitbit Charge 2 charging cable only",
+    "B07G1Z1SDS": "Galaxy Watch screen protector only",
+    "B07GC4KX2Q": "Galaxy Watch screen protector only",
+    "B07GGKW3KC": "Galaxy Watch screen protector only",
+    "B081R3DZNZ": "Fitbit Versa 2 protector only",
+    "B092RSVRDM": "Amazfit PACE protector only",
+    "B0C32MZ6XS": "Fitbit Charge protector only",
+    "B0C3XBNHXQ": "Fitbit Luxe protector only"
+  },
+  "non_phone_title_patterns": [
+    "\\btv\\s+(?:wall\\s+)?mount\\b",
+    "\\b(?:fitbit|amazfit|watch|watches|iwatch)\\b"
+  ],
+  "phone_evidence_patterns": [
+    "\\b(?:iphone|smartphone|smartphones|cellphone|cellphones|phones)\\b",
+    "\\b(?:cell|mobile)\\s+phone\\b",
+    "\\bgalaxy\\s+(?:s\\d|note\\s*\\d|a\\d)",
+    "\\b(?:google\\s+)?pixel\\s*\\d"
+  ]
+}

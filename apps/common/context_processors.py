@@ -1,0 +1,15 @@
+from django.db.models import Sum
+
+from apps.cart.models import CartItem
+
+
+def shopping_context(request):
+    count = 0
+    if request.user.is_authenticated:
+        count = (
+            CartItem.objects.filter(cart__user=request.user).aggregate(total=Sum("quantity"))[
+                "total"
+            ]
+            or 0
+        )
+    return {"cart_quantity": count}

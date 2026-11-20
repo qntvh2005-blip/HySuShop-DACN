@@ -1,0 +1,18 @@
+{
+  "content": {
+    "distinct_recommended_items": 640,
+    "top_decile_recommendation_share": 0.1711276332094176
+  },
+  "hybrid": {
+    "distinct_recommended_items": 688,
+    "top_decile_recommendation_share": 0.23128872366790582
+  },
+  "item_cf": {
+    "distinct_recommended_items": 686,
+    "top_decile_recommendation_share": 0.17366790582403965
+  },
+  "popularity": {
+    "distinct_recommended_items": 15,
+    "top_decile_recommendation_share": 1.0
+  }
+}

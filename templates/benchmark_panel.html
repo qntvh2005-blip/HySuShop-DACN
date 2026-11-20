@@ -1,0 +1,78 @@
+<div class="section-heading mt-5">
+  <div>
+    <p class="eyebrow">THỰC NGHIỆM TRÊN DỮ LIỆU AMAZON</p>
+    <h2>So sánh chất lượng gợi ý</h2>
+  </div>
+</div>
+{% if benchmark %}
+  <form method="get" class="benchmark-filters">
+    <label for="benchmark-group">Nhóm người dùng</label>
+    <select name="group" id="benchmark-group">
+      <option value="all" {% if benchmark_group == 'all' %}selected{% endif %}>Toàn bộ</option>
+      <option value="sparse" {% if benchmark_group == 'sparse' %}selected{% endif %}>
+        Ít tương tác · 3–5 train positives
+      </option>
+      <option value="active" {% if benchmark_group == 'active' %}selected{% endif %}>
+        Nhiều tương tác · Từ 6 train positives
+      </option>
+    </select>
+    <label for="benchmark-k">Số gợi ý</label>
+    <select id="benchmark-k" name="k">
+      <option value="5" {% if benchmark_k == 5 %}selected{% endif %}>Top 5</option>
+      <option value="10" {% if benchmark_k == 10 %}selected{% endif %}>Top 10</option>
+    </select>
+    <button class="btn btn-dark">Xem kết quả</button>
+  </form>
+  <p class="muted">
+    Dữ liệu thực tế: {{ benchmark_statistics.items }} sản phẩm · {{ benchmark_statistics.users }} người dùng · {{ benchmark_statistics.positives }} tương tác tích cực. Cấu hình được chọn trên development và khóa trước test; không huấn luyện lại bằng development.
+  </p>
+  <div class="benchmark-chart"
+       role="img"
+       aria-label="Biểu đồ nDCG tại top {{ benchmark_k }}; giá trị chính xác nằm trong bảng bên dưới">
+    {% for row in benchmark %}
+      <div class="benchmark-bar-row">
+        <span>{{ row.algorithm }}</span>
+        <div class="benchmark-track">
+          <div class="benchmark-bar" style="width:{{ row.ndcg_percent|stringformat:'.3f' }}%"></div>
+        </div>
+        <strong>{{ row.ndcg|floatformat:5 }}</strong>
+      </div>
+    {% endfor %}
+    <p class="muted">Thang nDCG: 0–1. Điểm cao hơn thể hiện thứ hạng tốt hơn trên tập test này.</p>
+  </div>
+  <div class="table-responsive">
+    <table class="table order-table">
+      <thead>
+        <tr>
+          <th>Phương pháp</th>
+          <th>Người dùng</th>
+          <th>Precision@{{ benchmark_k }}</th>
+          <th>Recall@{{ benchmark_k }}</th>
+          <th>nDCG@{{ benchmark_k }}</th>
+          <th>Hit Rate@{{ benchmark_k }}</th>
+          <th>Trung bình</th>
+          <th>P95</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in benchmark %}
+          <tr>
+            <td>{{ row.algorithm }}</td>
+            <td>{{ row.users }}</td>
+            <td>{{ row.precision|floatformat:5 }}</td>
+            <td>{{ row.recall|floatformat:5 }}</td>
+            <td>{{ row.ndcg|floatformat:5 }}</td>
+            <td>{{ row.hit_rate|floatformat:5 }}</td>
+            <td>{{ row.mean_ms|floatformat:2 }} ms</td>
+            <td>{{ row.p95_ms|floatformat:2 }} ms</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">
+    Hybrid: α={{ benchmark_config.alpha }} · CF: {{ benchmark_config.item_cf.neighbors }} neighbors · TF-IDF: min_df={{ benchmark_config.content.min_df }}. Recall và Hit Rate trùng nhau do mỗi người dùng có một item mục tiêu trong mỗi giai đoạn. Thời gian chỉ đo tính điểm và xếp hạng khi mô hình đã được nạp, không gồm truy vấn database.
+  </p>
+{% else %}
+  <p class="muted">Chưa có bộ kết quả thực nghiệm hoàn chỉnh và hợp lệ để hiển thị.</p>
+{% endif %}

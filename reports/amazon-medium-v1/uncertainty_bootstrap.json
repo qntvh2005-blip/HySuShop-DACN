@@ -1,0 +1,139 @@
+{
+  "confidence_level": 0.95,
+  "groups": {
+    "active": {
+      "comparisons": {
+        "content": {
+          "hit_rate@10": {
+            "difference": 0.012345679012345678,
+            "lower": -0.037037037037037035,
+            "upper": 0.06172839506172839
+          },
+          "ndcg@10": {
+            "difference": -0.0008282610697630464,
+            "lower": -0.021287666915724937,
+            "upper": 0.019114804263579876
+          }
+        },
+        "item_cf": {
+          "hit_rate@10": {
+            "difference": 0.024691358024691357,
+            "lower": -0.018518518518518517,
+            "upper": 0.07407407407407407
+          },
+          "ndcg@10": {
+            "difference": 0.010952402147484833,
+            "lower": -0.006809142321299262,
+            "upper": 0.029639270186921845
+          }
+        },
+        "popularity": {
+          "hit_rate@10": {
+            "difference": 0.09259259259259259,
+            "lower": 0.037037037037037035,
+            "upper": 0.14814814814814814
+          },
+          "ndcg@10": {
+            "difference": 0.03884831498946696,
+            "lower": 0.010054810623144186,
+            "upper": 0.06921708705308766
+          }
+        }
+      },
+      "users": 162
+    },
+    "all": {
+      "comparisons": {
+        "content": {
+          "hit_rate@10": {
+            "difference": 0.03469640644361834,
+            "lower": 0.01982651796778191,
+            "upper": 0.04956629491945477
+          },
+          "ndcg@10": {
+            "difference": 0.01865797802867057,
+            "lower": 0.010948403263593665,
+            "upper": 0.02671189372237877
+          }
+        },
+        "item_cf": {
+          "hit_rate@10": {
+            "difference": 0.031598513011152414,
+            "lower": 0.020446096654275093,
+            "upper": 0.042131350681536554
+          },
+          "ndcg@10": {
+            "difference": 0.01685870849620139,
+            "lower": 0.010505859133600762,
+            "upper": 0.022685746409539912
+          }
+        },
+        "popularity": {
+          "hit_rate@10": {
+            "difference": 0.07868649318463444,
+            "lower": 0.05947955390334572,
+            "upper": 0.09665427509293681
+          },
+          "ndcg@10": {
+            "difference": 0.04276851809753456,
+            "lower": 0.03189954666669662,
+            "upper": 0.05334514574130416
+          }
+        }
+      },
+      "users": 1614
+    },
+    "sparse": {
+      "comparisons": {
+        "content": {
+          "hit_rate@10": {
+            "difference": 0.0371900826446281,
+            "lower": 0.02203856749311295,
+            "upper": 0.05303030303030303
+          },
+          "ndcg@10": {
+            "difference": 0.020832062556181755,
+            "lower": 0.012692212661218836,
+            "upper": 0.02944010555013254
+          }
+        },
+        "item_cf": {
+          "hit_rate@10": {
+            "difference": 0.03236914600550964,
+            "lower": 0.02134986225895317,
+            "upper": 0.04409435261707964
+          },
+          "ndcg@10": {
+            "difference": 0.017517676559901173,
+            "lower": 0.011055624699378066,
+            "upper": 0.024116824159449803
+          }
+        },
+        "popularity": {
+          "hit_rate@10": {
+            "difference": 0.07713498622589532,
+            "lower": 0.05785123966942149,
+            "upper": 0.09641873278236915
+          },
+          "ndcg@10": {
+            "difference": 0.04320589613025283,
+            "lower": 0.03191701361676593,
+            "upper": 0.054757713497795776
+          }
+        }
+      },
+      "users": 1452
+    }
+  },
+  "input_sha256": {
+    "manifest.json": "8a382290b95e3bd83ccd9a2eae04d09d6a6a14c3d6f3d2cf88dce792928fba62",
+    "test_metrics.json": "98f46fd698c6c664d50bdfe60396998b90c72ccf7b66d2dd601ef4486631332b",
+    "test_per_user.jsonl": "7fe2939a45bb31ee4b1d0f88a8dc8537752e560f7dca8878107a03b671f3edc1"
+  },
+  "method": "paired-user percentile bootstrap",
+  "multiple_comparison_adjustment": null,
+  "post_hoc": true,
+  "repeats": 5000,
+  "scope": "conditional on frozen models, rankings and test cohort; no refit",
+  "seed": 42
+}

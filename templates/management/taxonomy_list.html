@@ -1,0 +1,87 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  {{ label }} · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>{{ label }}</h1>
+      <p>
+        {% if kind == 'danh-muc' %}
+          Tạo và đổi tên nhóm sản phẩm, như ốp lưng hoặc cáp sạc. Gán danh mục khi chỉnh sửa sản phẩm để khách có thể lọc theo nhóm.
+        {% elif kind == 'thuong-hieu' %}
+          Quản lý tên thương hiệu dùng trong thông tin sản phẩm của cửa hàng.
+        {% else %}
+          Quản lý mẫu điện thoại. Số đang mở bán chỉ tính sản phẩm đã được xác nhận tương thích với mẫu máy đó.
+        {% endif %}
+      </p>
+    </div>
+    {% if can_add %}
+      <a class="manage-button primary" href="{% url 'manage_taxonomy_create' kind %}">
+        {% include 'components/icon.html' with name='plus' %}
+      Thêm mới</a>
+    {% endif %}
+  </div>
+  <section class="manage-panel">
+    <form method="get" class="manage-filters">
+      <label class="filter-search">
+        {% include 'components/icon.html' with name='search' %}
+        <input name="q"
+               value="{{ query }}"
+               placeholder="Tìm {{ label|lower }}"
+               maxlength="150"
+               aria-label="Tìm kiếm">
+      </label>
+      <select name="scope" aria-label="Phạm vi dữ liệu">
+        <option value="active"{% if scope == 'active' %} selected{% endif %}>Đang dùng trên cửa hàng</option>
+        <option value="all"{% if scope == 'all' %} selected{% endif %}>Tất cả</option>
+      </select>
+      <button class="manage-button">Tìm kiếm</button>
+    </form>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Tên</th>
+            {% if kind == 'thiet-bi' %}
+              <th>Hãng thiết bị</th>
+            {% endif %}
+            <th>Đang mở bán</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in page_obj %}
+            <tr>
+              <td class="primary-text">{{ object.name }}</td>
+              {% if kind == 'thiet-bi' %}
+                <td>{{ object.manufacturer }}</td>
+              {% endif %}
+              <td>{{ object.active_count }}</td>
+              <td>
+                <div class="heading-actions">
+                  {% if can_change %}
+                    <a class="manage-button subtle"
+                       href="{% url 'manage_taxonomy_edit' kind object.pk %}">Chỉnh sửa</a>
+                  {% endif %}
+                  {% if can_delete and not object.product_count and not object.preference_count %}
+                    <form method="post" action="{% url 'manage_taxonomy_delete' kind object.pk %}">
+                      {% csrf_token %}
+                      <button class="manage-button subtle danger">Xóa mục chưa dùng</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="{% if kind == 'thiet-bi' %}4{% else %}3{% endif %}" class="empty-row">Không tìm thấy dữ liệu phù hợp.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with show_count=True %}
+  </section>
+{% endblock %}

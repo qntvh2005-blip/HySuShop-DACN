@@ -1,0 +1,659 @@
+{
+  "accounts_per_cohort": 10,
+  "cohorts": 3,
+  "logical_cpus": 16,
+  "measurements": [
+    {
+      "cohort": "new",
+      "concurrency": 1,
+      "endpoint": "/",
+      "initial_known_events": 0,
+      "median_ms": 99.28785000010976,
+      "p95_ms": 215.1137650005694,
+      "requests": 40,
+      "requests_per_second": 8.541046422104106,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": "no_known_history"
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 1,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 0,
+      "median_ms": 91.7679499998485,
+      "p95_ms": 198.82884999933594,
+      "requests": 40,
+      "requests_per_second": 8.541748071304083,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 1,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 0,
+      "median_ms": 98.29540000009729,
+      "p95_ms": 214.7663500008093,
+      "requests": 40,
+      "requests_per_second": 7.8329605496875745,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 5,
+      "endpoint": "/",
+      "initial_known_events": 0,
+      "median_ms": 147.51184999931866,
+      "p95_ms": 258.57390499904795,
+      "requests": 40,
+      "requests_per_second": 29.750312322505806,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": "no_known_history"
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 5,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 0,
+      "median_ms": 125.1765000006344,
+      "p95_ms": 231.75770500038197,
+      "requests": 40,
+      "requests_per_second": 34.49906240172652,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 5,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 0,
+      "median_ms": 133.91464999949676,
+      "p95_ms": 233.71896500120778,
+      "requests": 40,
+      "requests_per_second": 31.943687112838514,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 10,
+      "endpoint": "/",
+      "initial_known_events": 0,
+      "median_ms": 258.82329999967624,
+      "p95_ms": 380.4540449999877,
+      "requests": 40,
+      "requests_per_second": 34.08018641866621,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": "no_known_history"
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 10,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 0,
+      "median_ms": 228.67580000001908,
+      "p95_ms": 352.7566599999772,
+      "requests": 40,
+      "requests_per_second": 39.294050939639284,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 10,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 0,
+      "median_ms": 249.04420000075334,
+      "p95_ms": 291.9189749993164,
+      "requests": 40,
+      "requests_per_second": 37.481059180961985,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 20,
+      "endpoint": "/",
+      "initial_known_events": 0,
+      "median_ms": 492.9587500000707,
+      "p95_ms": 572.5750150007116,
+      "requests": 40,
+      "requests_per_second": 35.911381483946776,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": "no_known_history"
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 20,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 0,
+      "median_ms": 431.9890500000838,
+      "p95_ms": 535.6777050014898,
+      "requests": 40,
+      "requests_per_second": 38.69343491392759,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "new",
+      "concurrency": 20,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 0,
+      "median_ms": 465.5920499999411,
+      "p95_ms": 626.951464999911,
+      "requests": 40,
+      "requests_per_second": 38.58448569918256,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 1,
+      "endpoint": "/",
+      "initial_known_events": 3,
+      "median_ms": 104.83710000062274,
+      "p95_ms": 209.27064500001504,
+      "requests": 40,
+      "requests_per_second": 8.29272025418516,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 1,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 3,
+      "median_ms": 89.260749999994,
+      "p95_ms": 119.62552500081054,
+      "requests": 40,
+      "requests_per_second": 10.342532257323976,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 1,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 3,
+      "median_ms": 102.42010000092705,
+      "p95_ms": 206.78429000072356,
+      "requests": 40,
+      "requests_per_second": 8.791622287290798,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 5,
+      "endpoint": "/",
+      "initial_known_events": 3,
+      "median_ms": 174.24864999975398,
+      "p95_ms": 269.97926499934687,
+      "requests": 40,
+      "requests_per_second": 26.817578117928022,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 5,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 3,
+      "median_ms": 121.30035000063799,
+      "p95_ms": 216.8521149997104,
+      "requests": 40,
+      "requests_per_second": 32.9344233639295,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 5,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 3,
+      "median_ms": 143.27125000090746,
+      "p95_ms": 228.2515100002456,
+      "requests": 40,
+      "requests_per_second": 29.492424317827986,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 10,
+      "endpoint": "/",
+      "initial_known_events": 3,
+      "median_ms": 322.970000001078,
+      "p95_ms": 449.4415199999821,
+      "requests": 40,
+      "requests_per_second": 28.304334716874834,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 10,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 3,
+      "median_ms": 236.09134999969683,
+      "p95_ms": 336.659909998707,
+      "requests": 40,
+      "requests_per_second": 37.503398745544835,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 10,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 3,
+      "median_ms": 257.9655999998067,
+      "p95_ms": 376.30120999983774,
+      "requests": 40,
+      "requests_per_second": 33.87583794001282,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 20,
+      "endpoint": "/",
+      "initial_known_events": 3,
+      "median_ms": 771.2759000005462,
+      "p95_ms": 970.9650449990477,
+      "requests": 40,
+      "requests_per_second": 23.121408667197255,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 20,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 3,
+      "median_ms": 505.5325500006802,
+      "p95_ms": 626.5606250003657,
+      "requests": 40,
+      "requests_per_second": 34.52291531867644,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "short",
+      "concurrency": 20,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 3,
+      "median_ms": 516.0432000002402,
+      "p95_ms": 649.3968050007425,
+      "requests": 40,
+      "requests_per_second": 35.292810775039484,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 1,
+      "endpoint": "/",
+      "initial_known_events": 20,
+      "median_ms": 121.43599999944854,
+      "p95_ms": 231.4061150010275,
+      "requests": 40,
+      "requests_per_second": 6.873222230332153,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 1,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 20,
+      "median_ms": 89.54475000064122,
+      "p95_ms": 196.75186499998745,
+      "requests": 40,
+      "requests_per_second": 8.959422439792924,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 1,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 20,
+      "median_ms": 105.68700000021636,
+      "p95_ms": 215.82545999954164,
+      "requests": 40,
+      "requests_per_second": 7.969528666532412,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 5,
+      "endpoint": "/",
+      "initial_known_events": 20,
+      "median_ms": 191.3629000000583,
+      "p95_ms": 263.7060750010277,
+      "requests": 40,
+      "requests_per_second": 23.960862327465804,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 5,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 20,
+      "median_ms": 134.77545000023383,
+      "p95_ms": 232.57095999906593,
+      "requests": 40,
+      "requests_per_second": 31.13188368755578,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 5,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 20,
+      "median_ms": 139.61590000053548,
+      "p95_ms": 237.32307499840317,
+      "requests": 40,
+      "requests_per_second": 30.811138657949858,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 10,
+      "endpoint": "/",
+      "initial_known_events": 20,
+      "median_ms": 366.95454999971844,
+      "p95_ms": 472.76674499917135,
+      "requests": 40,
+      "requests_per_second": 25.455840925425026,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 10,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 20,
+      "median_ms": 250.28924999969604,
+      "p95_ms": 332.2764199998346,
+      "requests": 40,
+      "requests_per_second": 36.62521363943303,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 10,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 20,
+      "median_ms": 255.60874999973748,
+      "p95_ms": 399.7097650001706,
+      "requests": 40,
+      "requests_per_second": 34.35779104141408,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 20,
+      "endpoint": "/",
+      "initial_known_events": 20,
+      "median_ms": 817.9743499995311,
+      "p95_ms": 1006.2294099997416,
+      "requests": 40,
+      "requests_per_second": 23.018499910839115,
+      "served_algorithms": [
+        {
+          "algorithm": "hybrid",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 20,
+      "endpoint": "/san-pham/",
+      "initial_known_events": 20,
+      "median_ms": 492.9515999992873,
+      "p95_ms": 606.8953249992774,
+      "requests": 40,
+      "requests_per_second": 35.060341477255015,
+      "served_algorithms": [],
+      "statuses": {
+        "200": 40
+      }
+    },
+    {
+      "cohort": "long",
+      "concurrency": 20,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "initial_known_events": 20,
+      "median_ms": 552.9545999988841,
+      "p95_ms": 721.4876400010326,
+      "requests": 40,
+      "requests_per_second": 31.94787384904763,
+      "served_algorithms": [
+        {
+          "algorithm": "content_similar",
+          "count": 40,
+          "fallback_reason": ""
+        }
+      ],
+      "statuses": {
+        "200": 40
+      }
+    }
+  ],
+  "model": "amazon-medium-v1",
+  "products": 709,
+  "python": "3.11.9",
+  "scope": "local HTML only; full imported research metadata and image URL records; simulated price=99000 and stock=20 for all 709 products; ten accounts per cohort; view-only profiles of 0/3/20 known items reset before each route phase; detail requests add views during their phase; same-route phases, not a mixed navigation journey; warm cache; no images/network/browser rendering/production or customer study"
+}

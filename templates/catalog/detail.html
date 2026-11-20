@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% load shop %}
+
+{% block title %}
+  <title>{{ product.name }} · HySuShop</title>
+{% endblock %}
+{% block content %}
+  <section class="container page-section">
+    <p class="breadcrumb-text">
+      <a href="{% url 'product_list' %}">Sản phẩm</a> / Chi tiết
+    </p>
+    <div class="detail-layout">
+      <section class="detail-gallery" aria-label="Ảnh sản phẩm" data-product-gallery>
+        {% with images=product.display_images %}
+          {% for image in images %}
+            <div class="detail-slide"{% if not forloop.first %} hidden{% endif %}>
+              {% include 'catalog/image.html' with image=image lazy=forloop.counter0 %}
+            </div>
+          {% empty %}
+            <div class="detail-slide">{% include 'catalog/image.html' with image=None %}</div>
+          {% endfor %}
+          {% if images|length > 1 %}
+            <div class="detail-gallery-controls" hidden>
+              <button type="button" data-gallery-step="-1" aria-label="Ảnh trước">
+                <span aria-hidden="true">‹</span>
+              </button>
+              <button type="button" data-gallery-step="1" aria-label="Ảnh tiếp theo">
+                <span aria-hidden="true">›</span>
+              </button>
+              <span class="detail-gallery-counter" aria-live="polite" aria-atomic="true" data-gallery-counter>
+                Ảnh 1 / {{ images|length }}
+              </span>
+            </div>
+          {% endif %}
+        {% endwith %}
+      </section>
+      <div class="detail-info">
+        <p class="eyebrow">{{ product.brand.name|default:'PHỤ KIỆN ĐIỆN THOẠI' }}</p>
+        <h1>{{ product.name }}</h1>
+        <p class="detail-price">{{ product.price|money }}</p>
+        <p>
+          {% if product.stock %}
+            <span class="availability">● Còn {{ product.stock }} sản phẩm</span>
+          {% else %}
+            Tạm hết hàng
+          {% endif %}
+        </p>
+        <form method="post" action="{% url 'update_cart' product.pk %}" class="purchase-form">
+          <input type="hidden" name="mode" value="add">
+          {% csrf_token %}
+          <label for="quantity">Số lượng</label>
+          <input id="quantity"
+                 name="quantity"
+                 type="number"
+                 min="1"
+                 max="{{ purchase_limit }}"
+                 value="1"
+                 {% if not product.stock %}disabled{% endif %}>
+          <button class="btn btn-dark" {% if not product.stock %}disabled{% endif %}>
+            Thêm vào giỏ hàng
+          </button>
+        </form>
+        <form method="post" action="{% url 'toggle_favorite' product.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-outline-dark w-100">
+            {% if is_favorite %}
+              ♥ Đã lưu · Bỏ yêu thích
+            {% else %}
+              ♡ Lưu sản phẩm yêu thích
+            {% endif %}
+          </button>
+        </form>
+        <div class="detail-section">
+          <h2>Thiết bị tương thích</h2>
+          {% if product.is_universal_accessory %}
+            <p>Dùng được trên hầu hết thiết bị di động đáp ứng điều kiện của phụ kiện.</p>
+          {% endif %}
+          {% for compatibility in compatibilities %}
+            <span class="device-tag">{{ compatibility.phone_model }}</span>
+          {% empty %}
+            {% if not product.is_universal_accessory and not compatibility_guidance %}
+              <p>Chưa xác nhận được mẫu máy phù hợp. Vui lòng đối chiếu thông số của sản phẩm.</p>
+            {% endif %}
+          {% endfor %}
+          {% if compatibility_guidance %}
+            <p class="mt-2">{{ compatibility_guidance }}</p>
+          {% elif product.is_universal_accessory %}
+            <p class="mt-2">Vui lòng đối chiếu điều kiện sử dụng trong phần thông tin sản phẩm.</p>
+          {% endif %}
+        </div>
+        <div class="detail-section">
+          <h2>Thông tin sản phẩm</h2>
+          <p class="description-text">{{ product.description|linebreaksbr }}</p>
+          {% if product.features %}
+            <ul>
+              {% for feature in product.features %}
+                <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if product.source_metadata.title %}
+            <details class="mt-3">
+              <summary>Tên sản phẩm gốc để đối chiếu</summary>
+              <p class="muted mt-2">{{ product.source_metadata.title }}</p>
+            </details>
+          {% endif %}
+        </div>
+      </div>
+      <section class="detail-reviews" aria-labelledby="product-reviews-heading">
+        <h2 id="product-reviews-heading">Đánh giá sau mua</h2>
+        {% for review in product.reviews.all %}
+          <article class="review-card" id="danh-gia-{{ review.pk }}">
+            <strong>{{ review.user.username }}</strong>
+            <div class="review-score">
+              <span class="review-stars" aria-hidden="true">
+                {% for value, label in review_form.rating.field.choices %}
+                  <span{% if value <= review.rating %} class="star-filled"{% endif %}>
+                    {% include 'components/icon.html' with name='star' %}
+                  </span>
+                {% endfor %}
+              </span>
+              <span class="visually-hidden">{{ review.rating }} trên 5 sao</span>
+            </div>
+            {% if review.comment %}<p>{{ review.comment|linebreaksbr }}</p>{% endif %}
+          </article>
+        {% empty %}
+          <p class="muted">Chưa có đánh giá từ khách hàng.</p>
+        {% endfor %}
+        {% if can_review %}
+          <form id="viet-danh-gia" class="form-panel review-form mt-4"
+                method="post"
+                action="{% url 'review_product' product.pk %}">
+            {% csrf_token %}
+            <fieldset aria-describedby="review-rating-help">
+              <legend>{{ review_form.rating.label }}</legend>
+              <div class="rating-picker">
+                {% for choice in review_form.rating %}
+                  <label class="rating-option">
+                    {{ choice.tag }}
+                    <span class="rating-star" aria-hidden="true">
+                      {% include 'components/icon.html' with name='star' %}
+                    </span>
+                    <span class="visually-hidden">{{ choice.choice_label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <p class="muted" id="review-rating-help">Chọn ngôi sao tương ứng với mức độ hài lòng của bạn.</p>
+            </fieldset>
+            <p>{{ review_form.comment.label_tag }}{{ review_form.comment }}</p>
+            <p class="muted">Bạn có thể đánh giá sau khi đã nhận sản phẩm.</p>
+            <button class="btn btn-dark">{% if current_review %}Cập nhật đánh giá{% else %}Gửi đánh giá{% endif %}</button>
+          </form>
+        {% elif user.is_authenticated %}
+          <p class="muted">Bạn có thể đánh giá sau khi nhận sản phẩm trong đơn đã giao.</p>
+        {% endif %}
+      </section>
+    </div>
+  </section>
+  <section class="container section-block detail-related">
+    <div class="section-heading">
+      <h2>{% if recommendation.algorithm == 'content_similar' and not recommendation.fallback_reason %}Sản phẩm tương tự{% else %}Có thể bạn quan tâm{% endif %}</h2>
+    </div>
+    <div class="product-grid">
+      {% for product in recommendation.products %}
+        {% include 'catalog/card.html' %}
+      {% empty %}
+        <p>Chưa có sản phẩm đang mở bán phù hợp để gợi ý.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

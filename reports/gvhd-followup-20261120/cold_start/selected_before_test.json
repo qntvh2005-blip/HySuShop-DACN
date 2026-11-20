@@ -1,0 +1,168 @@
+{
+  "alpha": 0.5,
+  "content": {
+    "min_df": 1,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "neighbors": 20,
+  "selected_on": "disjoint development users",
+  "trials": [
+    {
+      "algorithm": "content",
+      "metrics": {
+        "hit_rate": 0.07453416149068323,
+        "ndcg": 0.05016282491097514,
+        "precision": 0.007453416149068324,
+        "recall": 0.07453416149068323
+      },
+      "parameters": {
+        "min_df": 1,
+        "ngram_range": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "algorithm": "content",
+      "metrics": {
+        "hit_rate": 0.07453416149068323,
+        "ndcg": 0.050437784581878524,
+        "precision": 0.007453416149068324,
+        "recall": 0.07453416149068323
+      },
+      "parameters": {
+        "min_df": 2,
+        "ngram_range": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "algorithm": "content",
+      "metrics": {
+        "hit_rate": 0.08695652173913043,
+        "ndcg": 0.0565706669738377,
+        "precision": 0.008695652173913044,
+        "recall": 0.08695652173913043
+      },
+      "parameters": {
+        "min_df": 1,
+        "ngram_range": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "algorithm": "content",
+      "metrics": {
+        "hit_rate": 0.08074534161490683,
+        "ndcg": 0.053548418086430204,
+        "precision": 0.008074534161490685,
+        "recall": 0.08074534161490683
+      },
+      "parameters": {
+        "min_df": 2,
+        "ngram_range": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "algorithm": "item_cf",
+      "metrics": {
+        "hit_rate": 0.18012422360248448,
+        "ndcg": 0.10273435439362652,
+        "precision": 0.018012422360248446,
+        "recall": 0.18012422360248448
+      },
+      "parameters": {
+        "neighbors": 20
+      }
+    },
+    {
+      "algorithm": "item_cf",
+      "metrics": {
+        "hit_rate": 0.18012422360248448,
+        "ndcg": 0.10273435439362652,
+        "precision": 0.018012422360248446,
+        "recall": 0.18012422360248448
+      },
+      "parameters": {
+        "neighbors": 50
+      }
+    },
+    {
+      "algorithm": "item_cf",
+      "metrics": {
+        "hit_rate": 0.18012422360248448,
+        "ndcg": 0.10273435439362652,
+        "precision": 0.018012422360248446,
+        "recall": 0.18012422360248448
+      },
+      "parameters": {
+        "neighbors": 100
+      }
+    },
+    {
+      "algorithm": "hybrid",
+      "metrics": {
+        "hit_rate": 0.18633540372670807,
+        "ndcg": 0.10960188286420242,
+        "precision": 0.018633540372670808,
+        "recall": 0.18633540372670807
+      },
+      "parameters": {
+        "alpha": 0.25,
+        "min_df": 1,
+        "neighbors": 20,
+        "ngram_range": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "algorithm": "hybrid",
+      "metrics": {
+        "hit_rate": 0.19254658385093168,
+        "ndcg": 0.11562795162804693,
+        "precision": 0.01925465838509317,
+        "recall": 0.19254658385093168
+      },
+      "parameters": {
+        "alpha": 0.5,
+        "min_df": 1,
+        "neighbors": 20,
+        "ngram_range": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "algorithm": "hybrid",
+      "metrics": {
+        "hit_rate": 0.12422360248447205,
+        "ndcg": 0.07903877140643642,
+        "precision": 0.012422360248447204,
+        "recall": 0.12422360248447205
+      },
+      "parameters": {
+        "alpha": 0.75,
+        "min_df": 1,
+        "neighbors": 20,
+        "ngram_range": [
+          1,
+          2
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load shop %}
+
+{% block content %}
+  <section class="container page-section">
+    <p class="eyebrow">SẢN PHẨM BẠN ĐÃ CHỌN</p>
+    <h1>Giỏ hàng</h1>
+    {% if lines %}
+      <div class="checkout-layout">
+        <div>
+          {% for line in lines %}
+            <article class="cart-row cart-item">
+              <div class="order-product-image">
+                {% include 'catalog/image.html' with product=line.product image=line.product.display_images.0 lazy=True only %}
+              </div>
+              <div class="cart-item-content">
+                {% if line.product.is_active %}
+                  <a href="{% url 'product_detail' line.product.slug %}">{{ line.product.name }}</a>
+                {% else %}
+                  <strong>{{ line.product.name }}</strong>
+                {% endif %}
+                <p class="muted">{{ line.product.price|money }} / sản phẩm</p>
+                {% if line.purchase_issue %}<p class="text-danger">{{ line.purchase_issue }}</p>{% endif %}
+                <form action="{% url 'update_cart' line.product_id %}" method="post">
+                  {% csrf_token %}
+                  <div class="cart-quantity" role="group" aria-label="Số lượng {{ line.product.name }}">
+                    <button type="submit" name="quantity" value="{{ line.quantity_down }}"
+                            aria-label="Giảm số lượng"
+                            {% if not line.can_change_quantity or line.quantity <= 1 %}disabled{% endif %}>−</button>
+                    <span>{{ line.quantity }}</span>
+                    <button type="submit" name="quantity" value="{{ line.quantity|add:'1' }}"
+                            aria-label="Tăng số lượng"
+                            {% if not line.can_change_quantity or line.quantity >= line.quantity_limit %}disabled{% endif %}>+</button>
+                  </div>
+                  <button class="link-button" type="submit" name="mode" value="remove">Xóa</button>
+                  {% if not line.purchase_issue %}<strong>{{ line.line_total|money }}</strong>{% endif %}
+                </form>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        <aside class="summary-panel">
+          <h2>Tóm tắt giỏ hàng</h2>
+          <div class="total-row">
+            <span>{% if can_checkout %}Tạm tính{% else %}Tạm tính sản phẩm có thể đặt{% endif %}</span><strong>{{ subtotal|money }}</strong>
+          </div>
+          {% if can_checkout %}
+            <p class="muted">Giá và tồn kho được kiểm tra lại khi đặt hàng.</p>
+            <a class="btn btn-dark w-100" href="{% url 'checkout' %}">Tiến hành đặt hàng ↗</a>
+          {% else %}
+            <p>Vui lòng sửa số lượng hoặc xóa sản phẩm có thông báo trước khi đặt hàng.</p>
+          {% endif %}
+        </aside>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <h3>Giỏ hàng của bạn đang trống</h3>
+        <a class="btn btn-dark" href="{% url 'product_list' %}">Khám phá sản phẩm</a>
+      </div>
+    {% endif %}
+  </section>
+  <section class="container section-block">
+    <h2>Có thể bạn cần thêm</h2>
+    <div class="product-grid mt-4">
+      {% for product in recommendation.products %}
+        {% include 'catalog/card.html' %}
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

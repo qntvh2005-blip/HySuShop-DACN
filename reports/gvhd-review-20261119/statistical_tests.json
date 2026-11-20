@@ -1,0 +1,172 @@
+{
+  "adjustment": "Holm across 18 comparisons",
+  "assumption": "paired algorithm labels are exchangeable under the null; cohort and fits are fixed",
+  "comparisons": [
+    {
+      "baseline": "popularity",
+      "difference": 0.04276851809753457,
+      "group": "all",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "popularity",
+      "difference": 0.07868649318463444,
+      "group": "all",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "content",
+      "difference": 0.01865797802867057,
+      "group": "all",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "content",
+      "difference": 0.03469640644361834,
+      "group": "all",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.01685870849620139,
+      "group": "all",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.031598513011152414,
+      "group": "all",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1614
+    },
+    {
+      "baseline": "popularity",
+      "difference": 0.04320589613025285,
+      "group": "sparse",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "popularity",
+      "difference": 0.07713498622589532,
+      "group": "sparse",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "content",
+      "difference": 0.020832062556181762,
+      "group": "sparse",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "content",
+      "difference": 0.0371900826446281,
+      "group": "sparse",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.01751767655990117,
+      "group": "sparse",
+      "metric": "ndcg@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.03236914600550964,
+      "group": "sparse",
+      "metric": "hit_rate@10",
+      "p_holm": 0.0017998200179982003,
+      "p_two_sided": 9.999000099990002e-05,
+      "users": 1452
+    },
+    {
+      "baseline": "popularity",
+      "difference": 0.03884831498946696,
+      "group": "active",
+      "metric": "ndcg@10",
+      "p_holm": 0.03799620037996201,
+      "p_two_sided": 0.007599240075992401,
+      "users": 162
+    },
+    {
+      "baseline": "popularity",
+      "difference": 0.09259259259259259,
+      "group": "active",
+      "metric": "hit_rate@10",
+      "p_holm": 0.011398860113988602,
+      "p_two_sided": 0.0018998100189981002,
+      "users": 162
+    },
+    {
+      "baseline": "content",
+      "difference": -0.0008282610697630467,
+      "group": "active",
+      "metric": "ndcg@10",
+      "p_holm": 1.0,
+      "p_two_sided": 0.9334066593340666,
+      "users": 162
+    },
+    {
+      "baseline": "content",
+      "difference": 0.012345679012345678,
+      "group": "active",
+      "metric": "hit_rate@10",
+      "p_holm": 1.0,
+      "p_two_sided": 0.8077192280771923,
+      "users": 162
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.010952402147484833,
+      "group": "active",
+      "metric": "ndcg@10",
+      "p_holm": 0.9467053294670533,
+      "p_two_sided": 0.23667633236676333,
+      "users": 162
+    },
+    {
+      "baseline": "item_cf",
+      "difference": 0.024691358024691357,
+      "group": "active",
+      "metric": "hit_rate@10",
+      "p_holm": 1.0,
+      "p_two_sided": 0.42555744425557446,
+      "users": 162
+    }
+  ],
+  "method": "paired sign-flip randomization, two-sided",
+  "post_hoc": true,
+  "repeats": 10000,
+  "seed": 20261119
+}

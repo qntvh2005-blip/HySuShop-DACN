@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Lịch sử hoạt động · HySuShop</title>
+{% endblock %}
+{% block content %}
+  <section class="container page-section">
+    <p class="eyebrow">TÀI KHOẢN CỦA BẠN</p>
+    <div class="section-heading">
+      <h1>Lịch sử hoạt động</h1>
+      <a href="{% url 'profile' %}">Thông tin tài khoản</a>
+    </div>
+    <p class="muted">
+      Các lần xem, thêm yêu thích, thêm giỏ và đặt hàng của bạn. Trạng thái đơn hàng hiện tại được hiển thị cùng hoạt động mua hàng.
+    </p>
+    <form method="get" class="mb-4 activity-filter">
+      {{ form.as_p }}
+      <button class="btn btn-dark">Lọc hoạt động</button>
+    </form>
+    <div class="table-responsive">
+      <table class="table order-table">
+        <thead>
+          <tr>
+            <th>Thời gian</th>
+            <th>Hoạt động</th>
+            <th>Sản phẩm</th>
+            <th>Đơn hàng</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for event in page_obj %}
+            <tr>
+              <td>{{ event.timestamp|date:'d/m/Y H:i' }}</td>
+              <td>{{ event.get_event_type_display }}</td>
+              <td>
+                {% if event.product.is_active %}
+                  <a href="{% url 'product_detail' event.product.slug %}">
+                {% endif %}
+                {{ event.order_item.name_snapshot|default:event.product.name }}
+                {% if event.product.is_active %}
+                  </a>
+                {% else %}
+                  <span class="muted">· Ngừng bán</span>
+                {% endif %}
+                <br>
+                <small class="muted">Mã: {{ event.product.external_item_id }}</small>
+              </td>
+              <td>
+                {% if event.order_item and event.order_item.order.user_id == user.pk %}
+                  <a href="{% url 'order_detail' event.order_item.order.number %}">{{ event.order_item.order.number|stringformat:'s'|slice:':8' }}</a><br>{{ event.order_item.order.get_status_display }}
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4">Chưa có hoạt động phù hợp.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'components/pagination.html' with pagination_label='Phân trang lịch sử' %}
+  </section>
+{% endblock %}

@@ -1,0 +1,56 @@
+.number-stepper {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  border: 1px solid var(--line, #dde4ee);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.manage-form .number-stepper {
+  width: 100%;
+}
+
+.number-stepper input[type="number"] {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding-inline: 4px;
+  border: 0;
+  border-radius: 0;
+  appearance: textfield;
+  text-align: center;
+}
+
+.number-stepper input::-webkit-inner-spin-button,
+.number-stepper input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.number-stepper button {
+  flex: 0 0 2.625rem;
+  min-height: 2.625rem;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.number-stepper button:enabled:hover {
+  background: #edf1f6;
+}
+
+.number-stepper button:disabled {
+  cursor: default;
+  opacity: .4;
+}
+
+.number-stepper :is(button, input):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}

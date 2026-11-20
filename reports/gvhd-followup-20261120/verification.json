@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-20",
+  "tests_passed": 167,
+  "test_log_sha256": "7fb72db0ae335fe761c137d6b69d867f8b5caae1fe8781e63d171cda11a33498",
+  "http_requests": 1440,
+  "http_200": 1440,
+  "max_concurrency": 20,
+  "history_lengths": [
+    0,
+    3,
+    20
+  ],
+  "http_script_sha256": "bc8a09bfc49544c4febd44981a52edc759f88f033619ff0c92bd22d09be8554b",
+  "http_results_sha256": "a2ac3aff4d0e2c5cd1fbe7def7c57348e5761e5b6cc87a938c5dd8c85fe45528",
+  "frozen_files_verified": 31,
+  "active_model_and_main_benchmark_unchanged": true,
+  "schema_changes": false,
+  "cold_start_users": {
+    "fit": 1291,
+    "development": 161,
+    "test": 162
+  },
+  "cold_start_fit_events": 5003,
+  "limits": [
+    "retrospective fixed catalog and cohort",
+    "different first and second positive targets",
+    "no live customer study or A/B",
+    "local warm HTML only, not Internet or images"
+  ],
+  "report_pages": 114,
+  "supplement_printed_pages": "94-96",
+  "response_pages": 3,
+  "study_guide_pages": 21,
+  "document_review": {
+    "date": "2026-11-20",
+    "report_pages": 114,
+    "response_pages": 3,
+    "study_guide_pages": 21,
+    "numeric_cells_verified": 184,
+    "schema_fields_verified": 145,
+    "native_equations_preserved": 16,
+    "media_files_preserved": 35,
+    "references": 16,
+    "frozen_files_verified": 31,
+    "proposal_scope": "core objectives retained; smaller dataset, no separate employee role, simulated payments and limited real-world validation remain disclosed",
+    "feedback_status": {
+      "addressed": 3,
+      "partially_addressed": 3
+    },
+    "test_suite_count_verified_from_log": 167,
+    "repeated_load_table_removed": true,
+    "latest_http_requests": 1440,
+    "latest_http_200": 1440,
+    "max_concurrency": 20,
+    "cold_start_targets_not_causally_compared": true,
+    "full_raw_pipeline_reproduction_not_claimed": true
+  },
+  "submission_package_review": {
+    "date": "2026-11-20",
+    "unpacked_source_tests_passed": 167,
+    "unpacked_test_log_sha256": "42f5c62ac09abe6f32638ff0450833c55ff4727223f23aa00486a86346234ca1",
+    "existing_environment_used_for_unpacked_tests": true,
+    "fresh_machine_install_not_claimed": true,
+    "sql_tables": 30,
+    "sql_runtime_tables_empty": true,
+    "sql_hash_matches_prior_restore_proof": true,
+    "source_matches_workspace": true,
+    "dataset_and_model_mapping_verified": true,
+    "catalog_items": 709,
+    "active_items": 696,
+    "research_users": 1614,
+    "positive_interactions": 9456,
+    "private_env_or_venv_included": false,
+    "uploaded_catalog_image_files_required": 0,
+    "remote_catalog_image_urls": 4841,
+    "full_submission_pending": [
+      "Record updated demo video and include it in the submission",
+      "Upload project to GitHub, provide its URL and verify GVHD access",
+      "Complete date/signature on response form; include old annotated book and faculty forms for printed submission"
+    ]
+  },
+  "test_log_path": "reports/gvhd-followup-20261120/explanations/system_tests.log",
+  "http_measurement_note": "Previously recorded local warm HTML measurement retained; not rerun after removing customer explanation presentation.",
+  "explanation_review": {
+    "customer_widget_removed": true,
+    "admin_journal_retained": true,
+    "recorded_cases_replayed": 3,
+    "all_score_and_rank_checks_passed": true,
+    "maximum_absolute_score_error": 0.0,
+    "snapshot_sha256": "7f7c6cb1f179dfde3708debc92df270b18d39cc7c36ba540511291a4aaac1329",
+    "audit_sha256": "a862cd1f57e1d1f97beb365146b8a03948f4734df07e17e3c1f1a049c272e965",
+    "customer_usefulness_or_causal_effect_claimed": false,
+    "scope": "Replayed fixed recorded cases and full stored candidate pools; score, normalization, rank and retained source-link checks only. Deliberately selected examples, not causal explanations, aggregate accuracy, usefulness or user-understanding measurements. No training, activation or live database writes."
+  },
+  "readiness_review": {
+    "date": "2026-11-20",
+    "tests_passed": 167,
+    "browser_workflow_checks": 13,
+    "clean_sql_restored_for_browser": true,
+    "temporary_browser_database_removed": true,
+    "browser_js_errors": 0,
+    "browser_local_http_5xx": 0,
+    "root_data_gitignore_fixed": true,
+    "research_data_pipeline_included_in_git": true,
+    "test_logs_included_in_git": true,
+    "private_local_secret_matches": 0,
+    "report_pages": 114,
+    "response_pages": 3,
+    "study_guide_pages": 21,
+    "long_prose_dashes_normalized_to_ascii_hyphen": true,
+    "native_math_and_images_preserved": true,
+    "feedback_status_unchanged": {
+      "addressed": 3,
+      "partially_addressed": 3
+    },
+    "frozen_files_unchanged": 31,
+    "clean_sql_unchanged": true,
+    "dataset_model_archive_unchanged": true,
+    "scope": "Local technical and formatting readiness review, not certification of zero defects, AI authorship detection, real customer usefulness, production deployment or final faculty acceptance."
+  }
+}

@@ -1,0 +1,197 @@
+{% extends 'management/base.html' %}
+
+{% load shop %}
+
+{% block title %}
+  Tổng quan cửa hàng · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Tổng quan cửa hàng</h1>
+      <p>Theo dõi đơn hàng, tồn kho và hoạt động cửa hàng tại một nơi.</p>
+    </div>
+    <div class="heading-actions">
+      <a class="manage-button" href="{% url 'home' %}">
+        {% include 'components/icon.html' with name='home' %}
+      Xem cửa hàng</a>
+      {% if perms.catalog.add_product %}
+        <a class="manage-button primary" href="{% url 'manage_product_create' %}">
+          {% include 'components/icon.html' with name='plus' %}
+        Thêm sản phẩm</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-icon">{% include 'components/icon.html' with name='box' %}</span>
+      <p>Sản phẩm đang mở bán</p>
+      <strong>{{ product_count }}</strong><small>{{ low_stock_count }} sản phẩm có tồn dưới 5</small>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">{% include 'components/icon.html' with name='bag' %}</span>
+      <p>Tổng đơn hàng</p>
+      <strong>{{ order_count }}</strong><small>{{ pending_count }} đơn đang chờ xác nhận</small>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">{% include 'components/icon.html' with name='chart' %}</span>
+      <p>Doanh thu mô phỏng đã giao</p>
+      <strong class="currency-value">{{ revenue|money }}</strong><small>Tính đến khi xác nhận nhận hàng trả</small>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">{% include 'components/icon.html' with name='bolt' %}</span>
+      <p>Thời gian gợi ý trung bình</p>
+      <strong>{{ recommendation_ms|floatformat:1 }} <span style="font-size:14px;color:#a2a7b0">ms</span></strong><small>Từ các lần sinh gợi ý trên website</small>
+    </div>
+  </div>
+  {% if perms.orders.view_order or perms.catalog.view_product %}
+    <section class="work-queue" aria-label="Việc cần xử lý">
+      {% if perms.orders.view_order %}
+        <a href="{% url 'manage_orders' %}?state=pending">
+          {% include 'components/icon.html' with name='bag' %}
+          <span><strong>Đơn chờ xác nhận</strong><small>{{ pending_count }} đơn hàng</small></span>
+          <span class="queue-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="{% url 'manage_orders' %}?state=return_requested">
+          {% include 'components/icon.html' with name='bag' %}
+          <span><strong>Yêu cầu trả hàng chờ duyệt</strong><small>{{ return_pending_count }} đơn hàng</small></span>
+          <span class="queue-arrow" aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+      {% if perms.catalog.view_product %}
+        <a href="{% url 'manage_products' %}?state=low">
+          {% include 'components/icon.html' with name='box' %}
+          <span><strong>Sản phẩm tồn thấp</strong><small>{{ low_stock_count }} sản phẩm có tồn dưới 5</small></span>
+          <span class="queue-arrow" aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </section>
+  {% endif %}
+  <div class="dashboard-split">
+    <section class="manage-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Doanh thu 7 ngày gần đây</h2>
+          <p>Giá trị đơn đã giao, theo ngày đặt hàng</p>
+        </div>
+        <strong class="sales-total">{{ weekly_revenue|money }}</strong>
+      </div>
+      <div class="panel-body">
+        {% if has_sales %}
+          <div class="sales-chart"
+               aria-label="Doanh thu các đơn đã giao trong bảy ngày gần đây">
+            {% for day in sales_days %}
+              <div class="sales-day">
+                <strong class="sales-amount">{{ day.total|money }}</strong>
+                <div class="sales-track" aria-hidden="true">
+                  <div class="sales-fill" style="height:{{ day.height|stringformat:'.2f' }}%"></div>
+                </div>
+                <small>{{ day.day|date:'d/m' }}</small>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="chart-empty">Chưa có đơn đã giao trong 7 ngày gần đây.</div>
+        {% endif %}
+      </div>
+    </section>
+    <section class="manage-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Cần theo dõi</h2>
+          <p>Tình trạng cửa hàng tại thời điểm hiện tại</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <a class="order-status-row" href="{% url 'manage_orders' %}?state=pending"><span><i></i> Chờ xác nhận</span><strong>{{ pending_count }}</strong></a><a class="order-status-row" href="{% url 'manage_orders' %}?state=shipping"><span><i></i> Đang giao hàng</span><strong>{{ shipping_count }}</strong></a><a class="order-status-row" href="{% url 'manage_orders' %}?state=delivered"><span><i></i> Đã giao thành công</span><strong>{{ delivered_count }}</strong></a><a class="order-status-row" href="{% url 'manage_products' %}?state=low"><span><i></i> Sắp hết hàng</span><strong>{{ low_stock_count }}</strong></a>
+      </div>
+    </section>
+  </div>
+  <section class="manage-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Đơn hàng gần đây</h2>
+        <p>Các đơn mới nhất từ khách hàng của bạn</p>
+      </div>
+      <a href="{% url 'manage_orders' %}">Xem tất cả →</a>
+    </div>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Mã đơn</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in recent_orders %}
+            <tr>
+              <td class="primary-text">#{{ order.number|stringformat:'s'|slice:':8'|upper }}</td>
+              <td>
+                {{ order.recipient_name }}<small>{{ order.user.username }}</small>
+              </td>
+              <td>{{ order.created_at|date:'d/m/Y' }}</td>
+              <td class="primary-text">{{ order.total|money }}</td>
+              <td>
+                <span class="state-pill {{ order.status }}">{{ order.get_status_display }}</span>
+              </td>
+              <td>
+                <a class="text-link" href="{% url 'manage_order_detail' order.pk %}">Chi tiết →</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td class="empty-row" colspan="6">Chưa có đơn hàng. Đơn mới sẽ xuất hiện tại đây.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% include 'activity_statistics.html' %}
+  <section class="manage-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Sản phẩm sắp hết hàng</h2>
+        <p>Các sản phẩm đang bán còn dưới 5 đơn vị</p>
+      </div>
+      <a href="{% url 'manage_products' %}?state=low">Quản lý tồn kho →</a>
+    </div>
+    <div class="table-responsive">
+      <table class="manage-table">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Mã sản phẩm</th>
+            <th>Tồn kho</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in low_stock %}
+            <tr>
+              <td>
+                <a href="{% url 'manage_product_edit' product.pk %}">{{ product.name }}</a>
+              </td>
+              <td>{{ product.external_item_id }}</td>
+              <td>
+                <span class="state-pill pending">{{ product.stock }}</span>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3" class="empty-row">Chưa có sản phẩm sắp hết hàng.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <details class="manage-panel benchmark-disclosure">
+    <summary>Kết quả thực nghiệm hệ thống gợi ý</summary>
+    <div>{% include 'benchmark_panel.html' %}</div>
+  </details>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% with image=item.display_image %}
+  <div class="order-product-image">
+    {% if image %}
+      <img src="{{ image }}" alt="" loading="lazy">
+    {% else %}
+      {% include 'components/icon.html' with name='box' %}
+    {% endif %}
+  </div>
+{% endwith %}

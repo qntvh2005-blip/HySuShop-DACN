@@ -1,0 +1,110 @@
+{
+  "database": "isolated PostgreSQL test database, created and removed for this run",
+  "logical_cpus": 16,
+  "measurements": [
+    {
+      "concurrency": 1,
+      "endpoint": "/",
+      "median_ms": 106.67149999972025,
+      "p95_ms": 218.94182999894835,
+      "requests": 30,
+      "requests_per_second": 7.574657337653545,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 1,
+      "endpoint": "/san-pham/",
+      "median_ms": 82.03020000019023,
+      "p95_ms": 183.97514000025694,
+      "requests": 30,
+      "requests_per_second": 10.185254155701742,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 1,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "median_ms": 101.84909999952652,
+      "p95_ms": 208.87046500056383,
+      "requests": 30,
+      "requests_per_second": 7.954205834058139,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 5,
+      "endpoint": "/",
+      "median_ms": 198.08110000030865,
+      "p95_ms": 325.12199999946455,
+      "requests": 30,
+      "requests_per_second": 22.95048883392803,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 5,
+      "endpoint": "/san-pham/",
+      "median_ms": 101.95399999975052,
+      "p95_ms": 200.74499000093056,
+      "requests": 30,
+      "requests_per_second": 41.172058719547415,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 5,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "median_ms": 146.66364999993675,
+      "p95_ms": 240.1273700000274,
+      "requests": 30,
+      "requests_per_second": 30.61342570154895,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 10,
+      "endpoint": "/",
+      "median_ms": 419.7043999993184,
+      "p95_ms": 627.9806250003274,
+      "requests": 30,
+      "requests_per_second": 21.965388259092997,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 10,
+      "endpoint": "/san-pham/",
+      "median_ms": 208.21175000037329,
+      "p95_ms": 355.2807699998992,
+      "requests": 30,
+      "requests_per_second": 36.45633266555887,
+      "statuses": {
+        "200": 30
+      }
+    },
+    {
+      "concurrency": 10,
+      "endpoint": "/san-pham/item-b001fvpu9o/",
+      "median_ms": 312.5345500002368,
+      "p95_ms": 373.27150999944934,
+      "requests": 30,
+      "requests_per_second": 30.650489202242337,
+      "statuses": {
+        "200": 30
+      }
+    }
+  ],
+  "model": "amazon-medium-v1",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "products": 709,
+  "python": "3.11.9",
+  "scope": "HTTP response and HTML body, authenticated cold-start user, local ThreadedWSGIServer, warm artifact cache; excludes images, browser rendering, Internet and production deployment"
+}

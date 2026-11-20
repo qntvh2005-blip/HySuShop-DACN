@@ -1,0 +1,26 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  Tạo tài khoản · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Tạo tài khoản</h1>
+      <p>Tạo tài khoản khách hàng hoặc quản trị viên.</p>
+    </div>
+    <a class="manage-button" href="{% url 'manage_accounts' %}">← Danh sách tài khoản</a>
+  </div>
+  <section class="manage-panel" style="max-width:750px">
+    <div class="panel-heading">
+      <h2>Thông tin tài khoản mới</h2>
+    </div>
+    <div class="panel-body">
+      <form class="manage-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="manage-button primary">Tạo tài khoản</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

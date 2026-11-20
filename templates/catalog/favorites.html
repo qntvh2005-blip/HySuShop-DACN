@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="container page-section">
+    <p class="eyebrow">BỘ SƯU TẬP CỦA BẠN</p>
+    <h1>Sản phẩm yêu thích</h1>
+    <div class="product-grid mt-4">
+      {% for product in products %}
+        {% include 'catalog/card.html' %}
+      {% empty %}
+        <div class="empty-state">
+          <h3>Lưu lại những món bạn thích</h3>
+          <p>Nhấn yêu thích ở trang sản phẩm để xem lại tại đây.</p>
+          <a class="btn btn-dark" href="{% url 'product_list' %}">Khám phá sản phẩm</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

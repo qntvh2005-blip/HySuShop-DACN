@@ -1,0 +1,24 @@
+{% load shop %}
+
+<article class="product-card">
+  <a class="product-image" aria-label="Xem {{ product.name }}" href="{% url 'product_detail' product.slug %}">
+    {% include 'catalog/image.html' with image=product.display_images.0 lazy=True %}
+    {% if product.stock == 0 %}
+      <span class="stock-tag">Tạm hết hàng</span>
+    {% endif %}
+  </a>
+  <div class="product-info">
+    <p class="product-type">{{ product.brand.name|default:'PHỤ KIỆN ĐIỆN THOẠI' }}</p>
+    <h3>
+      <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
+    </h3>
+    <p class="product-type">Mã: {{ product.external_item_id }}</p>
+    {% if form.cleaned_data.phone and product.is_universal_accessory %}
+      <p class="product-type">Phụ kiện dùng chung</p>
+    {% endif %}
+    <div class="product-bottom">
+      <strong>{{ product.price|money }}</strong><a href="{% url 'product_detail' product.slug %}"
+   aria-label="Xem {{ product.name }}">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</article>

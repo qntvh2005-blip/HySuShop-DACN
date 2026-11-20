@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      {% block title %}
+        Quản trị HySuShop
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'management.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'number-stepper.css' %}">
+    <script src="{% static 'number-stepper.js' %}" defer></script>
+  </head>
+  <body class="management-body">
+    <aside class="manage-sidebar">
+      <a class="manage-logo"
+         href="{% url 'dashboard' %}"><span>HYSU</span>SHOP<span class="logo-dot">.</span></a>
+      <div class="workspace-label">
+        <span class="workspace-dot"></span> Không gian quản trị
+      </div>
+      <nav aria-label="Quản trị cửa hàng">
+        <p>CỬA HÀNG</p>
+        <a class="{% if area == 'dashboard' %}selected{% endif %}"
+           href="{% url 'dashboard' %}">
+          {% include 'components/icon.html' with name='grid' %}
+        Tổng quan</a>
+        {% if perms.catalog.view_product %}
+          <a class="{% if area == 'products' %}selected{% endif %}"
+             href="{% url 'manage_products' %}">
+            {% include 'components/icon.html' with name='box' %}
+          Sản phẩm</a>
+        {% endif %}
+        {% if perms.orders.view_order %}
+          <a class="{% if area == 'orders' %}selected{% endif %}"
+             href="{% url 'manage_orders' %}">
+            {% include 'components/icon.html' with name='bag' %}
+          Đơn hàng</a>
+        {% endif %}
+        {% if perms.catalog.view_category %}
+          <a class="{% if area == 'danh-muc' %}selected{% endif %}"
+             href="{% url 'manage_taxonomy' 'danh-muc' %}">
+            {% include 'components/icon.html' with name='grid' %}
+          Danh mục</a>
+        {% endif %}
+        {% if perms.catalog.view_brand %}
+          <a class="{% if area == 'thuong-hieu' %}selected{% endif %}"
+             href="{% url 'manage_taxonomy' 'thuong-hieu' %}">
+            {% include 'components/icon.html' with name='tag' %}
+          Thương hiệu</a>
+        {% endif %}
+        {% if perms.catalog.view_phonemodel %}
+          <a class="{% if area == 'thiet-bi' %}selected{% endif %}"
+             href="{% url 'manage_taxonomy' 'thiet-bi' %}">
+            {% include 'components/icon.html' with name='phone' %}
+          Thiết bị tương thích</a>
+        {% endif %}
+        <p>QUẢN LÝ & PHÂN TÍCH</p>
+        {% if perms.accounts.manage_accounts %}
+          <a class="{% if area == 'accounts' %}selected{% endif %}"
+             href="{% url 'manage_accounts' %}">
+            {% include 'components/icon.html' with name='users' %}
+          Tài khoản</a>
+        {% endif %}
+        {% if perms.recommendations.view_recommendationlog %}
+          <a class="{% if area == 'recommendations' %}selected{% endif %}"
+             href="{% url 'manage_recommendations' %}">
+            {% include 'components/icon.html' with name='chart' %}
+          Hệ thống gợi ý</a>
+        {% endif %}
+        {% if perms.catalog.view_product and perms.orders.view_order %}
+          <a class="{% if area == 'activity' %}selected{% endif %}"
+             href="{% url 'manage_activity' %}">
+            {% include 'components/icon.html' with name='clock' %}
+          Nhật ký thao tác</a>
+        {% endif %}
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="{% url 'home' %}">
+          {% include 'components/icon.html' with name='home' %}
+          Xem cửa hàng
+          {% include 'components/icon.html' with name='arrow' %}
+        </a><small>HySuShop · Website đồ án</small>
+      </div>
+    </aside>
+    <div class="manage-main">
+      <header class="manage-topbar">
+        <div>
+          <span class="store-status"></span> HySuShop <span class="topbar-separator">/</span> <span>Quản trị cửa hàng</span>
+        </div>
+        <div class="operator">
+          <span class="operator-avatar">{{ user.username|first|upper }}</span><span><strong>{{ user.username }}</strong><small>
+            {% if user.is_superuser %}
+              Quản trị viên
+            {% else %}
+              Nhân sự cửa hàng
+            {% endif %}
+          </small></span>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="icon-button" title="Đăng xuất" aria-label="Đăng xuất">
+              {% include 'components/icon.html' with name='logout' %}
+            </button>
+          </form>
+        </div>
+      </header>
+      <main class="manage-content">
+        {% if messages %}
+          <div aria-live="polite">
+            {% for message in messages %}
+              <div class="manage-notice {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+        <footer class="manage-footer">
+          <span>HySuShop · Quản trị cửa hàng</span><span>Đồ án chuyên ngành · Dữ liệu bán hàng mô phỏng</span>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

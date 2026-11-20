@@ -1,0 +1,64 @@
+{
+  "all_passed": true,
+  "bundle_sha256": "062e6d4ee125d1d7ff646768ecb8605a59d65ae9bff8c5d8c37d57d89eb78764",
+  "cases_checked": 3,
+  "results": [
+    {
+      "candidate_count": 696,
+      "case": "E1",
+      "cf_contribution": 0.1825741858335062,
+      "checks_passed": true,
+      "component_only_ranks": {
+        "content": 5,
+        "item_cf": 31,
+        "popularity": 590
+      },
+      "content_contribution": 0.36269048679456983,
+      "item_id": "B0C786CPSM",
+      "kind": "same_group",
+      "max_absolute_score_error": 0.0,
+      "popularity_train_users": 3.0,
+      "rank": 2,
+      "source_log_id": 4050
+    },
+    {
+      "candidate_count": 696,
+      "case": "E2",
+      "cf_contribution": 0.49999999999575734,
+      "checks_passed": true,
+      "component_only_ranks": {
+        "content": 447,
+        "item_cf": 1,
+        "popularity": 473
+      },
+      "content_contribution": 0.048408139233824116,
+      "item_id": "B01D221GPA",
+      "kind": "cross_group",
+      "max_absolute_score_error": 0.0,
+      "popularity_train_users": 4.0,
+      "rank": 1,
+      "source_log_id": 4050
+    },
+    {
+      "candidate_count": 696,
+      "case": "E3",
+      "cf_contribution": null,
+      "checks_passed": true,
+      "component_only_ranks": {
+        "content": 1,
+        "item_cf": 1,
+        "popularity": 1
+      },
+      "content_contribution": null,
+      "item_id": "B01415QHYW",
+      "kind": "no_history",
+      "max_absolute_score_error": 0.0,
+      "popularity_train_users": 113.0,
+      "rank": 1,
+      "source_log_id": 4054
+    }
+  ],
+  "scope": "Replayed fixed recorded cases and full stored candidate pools; score, normalization, rank and retained source-link checks only. Deliberately selected examples, not causal explanations, aggregate accuracy, usefulness or user-understanding measurements. No training, activation or live database writes.",
+  "script_sha256": "6a009ca93443515c533b667bce5d69312e084d0d3681ae23aff0758bb0af61f4",
+  "snapshot_sha256": "7f7c6cb1f179dfde3708debc92df270b18d39cc7c36ba540511291a4aaac1329"
+}

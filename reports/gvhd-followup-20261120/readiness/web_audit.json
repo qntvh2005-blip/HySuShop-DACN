@@ -1,0 +1,89 @@
+{
+  "sql_restored": true,
+  "products": 709,
+  "active": 696,
+  "accounts_before_demo": 0,
+  "orders_before_demo": 0,
+  "active_missing_price": 0,
+  "active_negative_stock": 0,
+  "active_missing_category": 0,
+  "active_universal": 112,
+  "active_without_verified_mapping_or_universal": 9,
+  "search_checks": {
+    "tay cầm": {
+      "count": 9,
+      "top_names": [
+        "Tay cầm và vòng giữ điện thoại PopSockets (101239)",
+        "Tay cầm và vòng giữ điện thoại PopSockets (707395) – Xanh dương",
+        "Tay cầm và vòng giữ điện thoại PopSockets (707073) – Vàng"
+      ]
+    },
+    "kính": {
+      "count": 184,
+      "top_names": [
+        "Kính cường lực bảo vệ màn hình UIYTRAESTING cho iPhone 4, iPhone 4s (325) – Trong suốt",
+        "Miếng dán bảo vệ màn hình Tech Armor cho Galaxy S3 (SP-HD-SAM-GS3-3) – Trong suốt",
+        "Kính cường lực bảo vệ màn hình Tech Armor cho Galaxy S10 (SP-HD-APL-IP4S-3)"
+      ]
+    },
+    "bút cảm ứng": {
+      "count": 8,
+      "top_names": [
+        "Bút cảm ứng amPen (MT-Stylus-SS01-Temp) – Đen",
+        "Bút cảm ứng yoyomax (NT62B)",
+        "Bút cảm ứng Bargains Depot (3301183) – Đen/Hồng"
+      ]
+    },
+    "túi chống nước": {
+      "count": 4,
+      "top_names": [
+        "Túi chống nước điện thoại FRiEQ cho iPhone 6s, iPhone 6s Plus, iPhone 7 (R1) – Đen",
+        "Túi chống nước điện thoại YOSH cho iPhone 12, Galaxy S20 (YSWB-001)",
+        "Túi chống nước điện thoại JOTO cho iPhone 14, Pixel 4 XL, Galaxy S21 – Xanh lá"
+      ]
+    },
+    "ốp lưng": {
+      "count": 235,
+      "top_names": [
+        "Ốp lưng điện thoại OtterBox Defender cho iPhone 3G, iPhone 3GS (77-18509) – Đen",
+        "Ốp lưng điện thoại OtterBox Defender cho iPhone 4 (APL2-I4UNI-A2-E4OTR) – Đen/Trắng",
+        "Ốp lưng điện thoại OtterBox COMMUTER cho Galaxy S3 (77-21392) – Trắng"
+      ]
+    }
+  },
+  "active_model": "amazon-medium-v1",
+  "demo_order": {
+    "quantity": 2,
+    "status": "returned",
+    "payment_status": "partially_refunded",
+    "stock_after": 19,
+    "expected_stock_after": 19
+  },
+  "browser": {
+    "actions": [
+      "Guest popularity heading",
+      "Catalog has 9 products per page",
+      "Search tay cam excludes unrelated screen protectors",
+      "Empty results message",
+      "Product gallery navigation",
+      "Guest cart action logs in and returns to product without GET 405",
+      "Product and cart plus/minus with immediate cart update",
+      "COD order placement and detail",
+      "Admin stock stepper and local upload preview",
+      "Delivery and direct product review from order",
+      "Partial return, received quantity and simulated refund",
+      "Signed-in history changes homepage to personalized heading",
+      "Mobile catalog without horizontal overflow"
+    ],
+    "js_errors": [],
+    "local_http_5xx": [],
+    "isolated_database": true,
+    "scope": "Browser user/admin flow on a restored clean SQL copy, localhost; no claim of production or every possible input"
+  },
+  "temporary_database_removed_after_run": true,
+  "conditional_accessories_review": {
+    "count": 9,
+    "all_have_explicit_usage_guidance": true,
+    "note": "Accessory parts or an ambiguous receiver variant are not assigned guessed phone mappings; source conflict and accessory-specific fit are disclosed."
+  }
+}

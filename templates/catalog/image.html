@@ -1,0 +1,16 @@
+<span class="product-media{% if not image %} is-unavailable{% endif %}">
+  {% if image %}
+    <img src="{{ image.display_url }}"
+         alt="{{ image.alt|default:product.name }}"
+         data-product-image{% if lazy %}
+         loading="lazy"
+         {% endif %}>
+  {% endif %}
+  <span class="product-image-fallback"
+        role="img"
+        aria-label="Chưa có ảnh sản phẩm"
+        {% if image %} hidden{% endif %}>
+    {% include 'components/icon.html' with name='box' %}
+    <span>Chưa có ảnh sản phẩm</span>
+  </span>
+</span>

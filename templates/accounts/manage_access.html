@@ -1,0 +1,29 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  Quyền truy cập · HySuShop
+{% endblock %}
+{% block content %}
+  <div class="manage-page-heading">
+    <div>
+      <h1>Quyền truy cập tài khoản</h1>
+      <p>{{ target_user.username }} · {{ target_user.email }}</p>
+    </div>
+    <a class="manage-button" href="{% url 'manage_accounts' %}">← Danh sách tài khoản</a>
+  </div>
+  <section class="manage-panel" style="max-width:750px">
+    <div class="panel-heading">
+      <h2>Trạng thái và vai trò</h2>
+    </div>
+    <div class="panel-body">
+      <div class="manage-hint">
+        Khách hàng mua sắm và quản lý dữ liệu cá nhân. Quản trị viên quản lý cửa hàng và tài khoản theo quyền được cấp. Khóa đăng nhập sẽ giữ nguyên lịch sử giao dịch.
+      </div>
+      <form class="manage-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="manage-button primary">Lưu quyền truy cập</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

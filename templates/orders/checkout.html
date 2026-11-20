@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load shop %}
+
+{% block content %}
+  <section class="container page-section">
+    <p class="eyebrow">HOÀN TẤT LỰA CHỌN CỦA BẠN</p>
+    <h1>Thông tin đặt hàng</h1>
+    <div class="checkout-layout">
+      <div class="form-panel">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <p class="muted">Đây là đơn hàng mô phỏng phục vụ đồ án, không thanh toán tiền thật.</p>
+          {% if can_checkout %}
+            <button class="btn btn-dark w-100">Xác nhận đặt hàng</button>
+          {% else %}
+            <a class="btn btn-outline-dark w-100" href="{% url 'cart' %}">Quay lại giỏ hàng</a>
+          {% endif %}
+        </form>
+      </div>
+      <aside class="summary-panel">
+        <h2>Đơn hàng của bạn</h2>
+        {% for line in lines %}
+          <div class="checkout-item">
+            <div class="order-product-image">
+              {% include 'catalog/image.html' with product=line.product image=line.product.display_images.0 lazy=True only %}
+            </div>
+            <div>
+              {{ line.product.name }} <b>× {{ line.quantity }}</b>
+              {% if line.purchase_issue %}<p class="text-danger mb-0">{{ line.purchase_issue }}</p>{% endif %}
+            </div>
+          </div>
+        {% empty %}
+          <p>Giỏ hàng đang trống.</p>
+        {% endfor %}
+        <div class="total-row">
+          <span>Phí vận chuyển mô phỏng</span><strong>0 ₫</strong>
+        </div>
+        <div class="total-row">
+          <span>{% if can_checkout or not lines %}Tổng cộng{% else %}Tạm tính sản phẩm có thể đặt{% endif %}</span><strong>{{ subtotal|money }}</strong>
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endblock %}
