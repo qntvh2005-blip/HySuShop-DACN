@@ -10,7 +10,7 @@ Chỉ đưa `.env.example` lên GitHub. `.env`, môi trường `.venv`, ảnh ng
 
 ## Cài đặt và chạy
 
-Mở terminal PowerShell trong thư mục chứa `manage.py`. Tạo database và tài khoản PostgreSQL riêng bằng pgAdmin trước khi cấu hình.
+Môi trường tham chiếu là Windows, Python 3.11.9 và PostgreSQL 18.3. Mở terminal PowerShell trong thư mục chứa `manage.py`. Tạo database và tài khoản PostgreSQL riêng bằng pgAdmin trước khi cấu hình.
 
 ```powershell
 py -3.11 -m venv .venv
@@ -114,3 +114,28 @@ Lệnh dùng tệp đầu ra chưa tồn tại, nạp bundle và tập ứng vi�
 Khách chọn món và số lượng cần trả ở đơn đã giao, nhập lý do và ảnh. Mỗi đơn có một hồ sơ trả hàng. Quản trị viên duyệt rồi nhập số lượng còn bán được khi nhận hàng. Số lượng hỏng được giữ trong chi tiết hồ sơ, chỉ phần còn bán được cộng vào tồn khả dụng. Tiền hoàn theo đơn giá lưu trong đơn và được mô phỏng. Tổng tiền đơn lúc mua giữ nguyên để đối chiếu; doanh thu ròng trừ tiền đã hoàn.
 
 Có thể truy vấn dữ liệu đã khôi phục bằng Query Tool trong pgAdmin. Trang Hệ thống gợi ý cho phép mở thời điểm từng lần gợi ý để xem điểm và các sản phẩm lịch sử có liên hệ. Nhật ký cũ và nhánh dự phòng có thể chưa lưu thành phần điểm.
+
+
+## Đối chiếu phiên bản dữ liệu và kết quả
+
+Trước khi đối chiếu số liệu, kiểm tra đồng thời tập xử lý, kết quả và bundle mô hình:
+
+- `data/processed/amazon-medium-v1/config.json`, `statistics.json`, `manifest.json`: cấu hình đầu vào, quy mô và dấu kiểm tra của dữ liệu.
+- `reports/amazon-medium-v1/locked_config.json`, `development_grid.json`, `test_metrics.json`: cấu hình chọn trên development và kết quả kiểm thử đã khóa.
+- `artifacts/amazon-medium-v1`: bundle và manifest phục vụ; `artifacts/active.json` xác định phiên bản website đang dùng.
+
+Đối chiếu checksum trong manifest, không chỉ tên thư mục. Khi chạy lại thực nghiệm, dùng thư mục đầu ra mới và giữ nguyên con trỏ phục vụ nếu chưa chủ động triển khai mô hình mới. Minh chứng thao tác trong báo cáo bổ sung cho bộ kiểm thử tự động; kết quả chỉ xác nhận các điều kiện và môi trường thử đã nêu.
+
+## Trình tự demo và kiểm tra nghiệp vụ
+
+Khôi phục bản CSDL sạch vào database riêng, tạo tài khoản quản trị và khách hàng mới. Bản sạch không có sẵn đơn hàng, đánh giá hoặc lịch sử tương tác của các ảnh trong báo cáo. Chuẩn bị các sản phẩm còn bán, đủ tồn và đã xác minh thiết bị tương thích.
+
+1. Khi chưa đăng nhập, giới thiệu catalog, tìm kiếm, lọc danh mục, thương hiệu, thiết bị và giá. Thử một tổ hợp có kết quả và một tổ hợp không phù hợp để minh họa thông báo không tìm thấy sản phẩm.
+2. Mở chi tiết sản phẩm, chuyển ảnh và kiểm tra thông tin tương thích. Cho xem danh sách sản phẩm được quan tâm khi chưa có hồ sơ cá nhân.
+3. Đăng nhập tài khoản khách, đặt thiết bị quan tâm, xem và lưu vài sản phẩm cùng nhóm. Quay lại mục Gợi ý dành cho bạn để đối chiếu ngữ cảnh; thêm và bỏ yêu thích, kiểm tra hồ sơ và lịch sử cá nhân.
+4. Thêm hàng, thay đổi số lượng, kiểm tra giỏ rồi đặt đơn COD. Đối chiếu giá lưu trong đơn, tổng tiền và tồn kho trước/sau khi đặt. Dùng một đơn riêng cho nhánh hủy; đơn khác đi qua xác nhận, giao hàng và đã giao để kiểm tra đánh giá sau mua và trả hàng.
+5. Trong trang quản lý, giới thiệu tổng quan, sản phẩm và ảnh tải lên, danh mục, thương hiệu, thiết bị tương thích, tài khoản và đơn hàng. Dùng dữ liệu thử riêng khi thêm, sửa hoặc ngừng bán sản phẩm. Kiểm tra quyền trước khi thao tác.
+6. Với đơn đã giao, khách đánh giá từ sản phẩm trong đơn, gửi yêu cầu trả theo từng món và số lượng, kèm lý do và ảnh. Quản trị duyệt, nhận hàng, ghi phần còn bán được và phần hỏng. Đối chiếu tồn chỉ tăng ở phần còn bán được, tiền hoàn theo đơn giá đã lưu và lịch sử xử lý; thử gửi lặp để kiểm tra chống xử lý hai lần.
+7. Mở mục Hệ thống gợi ý, đối chiếu đúng lần đề xuất, nguồn, thành phần điểm và sản phẩm lịch sử liên quan. Bản sạch chưa có nhật ký cũ; dùng kết quả mới phát sinh hoặc bộ minh chứng đã ẩn định danh tại `reports/gvhd-followup-20261120/explanations`.
+
+Kết thúc bằng phạm vi đã thực hiện và các giới hạn: hệ thống có hai vai trò khách hàng/quản trị viên; COD và hoàn tiền là mô phỏng; mỗi đơn có một hồ sơ trả. Các bước cùng điều kiện kiểm thử chi tiết được mô tả trong Chương 3 của báo cáo. Không dùng dữ liệu demo để thay đổi bộ dữ liệu và kết quả nghiên cứu đã khóa.
